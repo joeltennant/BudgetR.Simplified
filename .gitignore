@@ -396,3 +396,7 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/BudgetR.Simplified/BudgetR.Simplified.Client/wwwroot/appsettings.Development.json
+/src/BudgetR.Simplified/BudgetR.Simplified/appsettings.Development.json
+/src/BudgetR.Simplified/Client/wwwroot/appsettings.development.json
+/src/BudgetR.Simplified/Client/wwwroot/appsettings.json
