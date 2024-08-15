@@ -1,7 +1,9 @@
 using BudgetR.Simplified.Client;
+using BudgetR.Simplified.Core.StateManagement;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -20,5 +22,9 @@ builder.Services.AddOidcAuthentication(options =>
     options.ProviderOptions.ResponseType = "code";
     options.ProviderOptions.AdditionalProviderParameters.Add("audience", builder.Configuration["Auth0:Audience"]);
 });
+
+builder.Services.AddMudServices();
+
+builder.Services.AddSingleton<ClientContext>();
 
 await builder.Build().RunAsync();
