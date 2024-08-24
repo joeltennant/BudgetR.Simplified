@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -16,6 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\BudgetR.Simplified.Application\BudgetR.Simplified.Application.csproj" />
     <ProjectReference Include="..\..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
+    <ProjectReference Include="..\..\BudgetR.Simplified.ServiceDefaults\BudgetR.Simplified.ServiceDefaults.csproj" />
     <ProjectReference Include="..\Client\BudgetR.Simplified.Client.csproj" />
   </ItemGroup>
 

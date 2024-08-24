@@ -2,7 +2,7 @@ using BudgetR.Simplified.Core;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BudgetR.Simplified.Server.Controllers;
+namespace BudgetR.Simplified.Controllers;
 [ApiController]
 [Route("[controller]")]
 [Authorize]
