@@ -1,0 +1,28 @@
+﻿<MudGrid>
+    <MudItem xs="12">
+        <MudToolBar Class="pa-0 d-flex align-start" Dense="true" Style="height:38px;">
+            <MudText Typo="Typo.h5">@ToolBarTitle</MudText>
+            @ToolBarLeftSide
+            <MudSpacer />
+            @ToolBarRightSide
+        </MudToolBar>
+    </MudItem>
+    <MudDivider Class="mx-6" />
+    <MudItem xs="12" Class="pt-3">
+        @Body
+    </MudItem>
+</MudGrid>
+
+@code {
+    [Parameter]
+    public RenderFragment? ToolBarTitle { get; set; }
+
+    [Parameter]
+    public RenderFragment? ToolBarRightSide { get; set; }
+
+    [Parameter]
+    public RenderFragment? ToolBarLeftSide { get; set; }
+
+    [Parameter]
+    public RenderFragment? Body { get; set; }
+}

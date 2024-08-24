@@ -7,4 +7,5 @@ public class ClientContext
     }
 
     public bool UserIsActive { get; set; }
+    public string? FirstName { get; set; }
 }
