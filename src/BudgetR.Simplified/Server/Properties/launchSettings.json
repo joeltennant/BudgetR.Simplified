@@ -8,7 +8,7 @@
       }
     },
     "profiles": {
-      "BudgetR.Simplified.Server": {
+      "BudgetR.Simplified": {
         "commandName": "Project",
         "dotnetRunMessages": true,
         "launchBrowser": true,

@@ -1,5 +1,5 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
-builder.AddProject<Projects.BudgetR_Simplified>("budgetr_simplified");
+builder.AddProject<Projects.BudgetR_Simplified>("budgetR-simplified");
 
 builder.Build().Run();
