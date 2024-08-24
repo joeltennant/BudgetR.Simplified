@@ -21,9 +21,12 @@
     <MudMainContent>
         <MudContainer MaxWidth="MaxWidth.Large">
             <MudGrid>
-                <MudItem xs="3" Class="mt-4">
-                    <NavMenu />
-                </MudItem>
+                @if (clientContext.UserIsActive)
+                {
+                    <MudItem xs="3" Class="mt-4">
+                        <NavMenu />
+                    </MudItem>
+                }
                 <MudItem xs="9" Class="mt-4">
                     @Body
                 </MudItem>
@@ -34,6 +37,9 @@
 <MudScrollToTop>
     <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
 </MudScrollToTop>
+
+<CheckUserStatus />
+
 @code {
     bool _drawerOpen = true;
 

@@ -1,0 +1,17 @@
+﻿@using BudgetR.Simplified.Core.StateManagement
+@inject NavigationManager NavigationManager
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        bool DoesUserExist = false;
+
+        if (clientContext.UserIsActive)
+        {
+            //call api to get user info
+        }
+        else
+        {
+            NavigationManager.NavigateTo("register");
+        }
+    }
+}
