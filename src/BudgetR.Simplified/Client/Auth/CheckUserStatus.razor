@@ -1,13 +1,24 @@
 ﻿@using BudgetR.Simplified.Core.StateManagement
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
 @inject NavigationManager NavigationManager
+
 @code {
     protected override async Task OnInitializedAsync()
     {
-        bool DoesUserExist = false;
-
         if (clientContext.UserIsActive)
         {
-            //call api to get user info
+            (string? FirstName, bool IsActive) user = await Http.GetFromJsonAsync<(string? FirstName, bool IsActive)>("api/Users/loginUser");
+
+            if (user.IsActive = true)
+            {
+                clientContext.UserIsActive = true;
+                clientContext.FirstName = user.FirstName;
+            }
+            else
+            {
+                NavigationManager.NavigateTo("register");
+            }
         }
         else
         {

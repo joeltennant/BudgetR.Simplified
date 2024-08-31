@@ -12,18 +12,21 @@ public class User
     public string? AuthenticationId { get; set; }
 
     [Column(Order = 2)]
-    public string? FirstName { get; set; }
+    public string? Email { get; set; }
 
     [Column(Order = 3)]
-    public string? LastName { get; set; }
+    public string? FirstName { get; set; }
 
     [Column(Order = 4)]
-    public UserType UserType { get; set; }
+    public string? LastName { get; set; }
 
     [Column(Order = 5)]
-    public bool IsActive { get; set; }
+    public UserType UserType { get; set; }
 
     [Column(Order = 6)]
+    public bool IsActive { get; set; }
+
+    [Column(Order = 7)]
     public long? BusinessTransactionActivityId { get; set; }
     public BusinessTransactionActivity? BusinessTransactionActivity { get; set; }
 }

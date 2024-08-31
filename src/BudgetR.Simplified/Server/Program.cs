@@ -1,3 +1,4 @@
+using BudgetR.Simplified.Application;
 using BudgetR.Simplified.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -15,10 +16,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 // Add services to the container.
-
 builder.Services.AddControllersWithViews();
 builder.Services.AddRazorPages();
+
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
+
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

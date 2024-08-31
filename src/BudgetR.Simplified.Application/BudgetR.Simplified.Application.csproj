@@ -1,9 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Ardalis.Result" Version="9.1.0" />
+		<PackageReference Include="Ardalis.Result.FluentValidation" Version="9.1.0" />
+		<PackageReference Include="MediatR" Version="12.4.0" />
+		<FrameworkReference Include="Microsoft.AspNetCore.App" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
+		<ProjectReference Include="..\BudgetR.Simplified.Domain\BudgetR.Simplified.Domain.csproj" />
+		<ProjectReference Include="..\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Infrastructure.csproj" />
+	</ItemGroup>
 
 </Project>
