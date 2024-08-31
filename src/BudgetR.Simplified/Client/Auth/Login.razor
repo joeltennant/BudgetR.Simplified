@@ -1,0 +1,26 @@
+﻿@using BudgetR.Simplified.Core.StateManagement
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
+@page "/login"
+
+You are being logged in.  Please wait.
+
+@code {
+    protected override async Task OnInitializedAsync()
+    {
+        (string? FirstName, bool IsActive) user = await Http.GetFromJsonAsync<(string? FirstName, bool IsActive)>("api/Users/loginUser");
+
+        if (user.IsActive == true)
+        {
+            clientContext.UserIsActive = true;
+            clientContext.IsLoggedIn = true;
+            clientContext.FirstName = user.FirstName;
+        }
+        else
+        {
+            NavigationManager.NavigateTo("register");
+        }
+    }
+}

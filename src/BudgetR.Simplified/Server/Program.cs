@@ -1,4 +1,5 @@
 using BudgetR.Simplified.Application;
+using BudgetR.Simplified.Core.StateManagement;
 using BudgetR.Simplified.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
@@ -23,6 +24,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddApplication();
 
 builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<ServerContext>();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using BudgetR.Simplified.Application.Handlers.Users;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetR.Simplified.Controllers;
@@ -12,8 +13,8 @@ public class UsersController : BaseController
     // GET api/Users/loginUser
     [HttpGet]
     [Route("loginUser")]
-    public string LoginUser(int id)
+    public async Task<(string? FirstName, bool IsActive)> LoginUser()
     {
-        return "value";
+        return await _mediator.Send(new LoginUser.Request());
     }
 }

@@ -1,29 +1,37 @@
-﻿
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Application.Handlers.Users;
-public static class Loginuser
+public static class LoginUser
 {
-    public class Request : IRequest<Result<long?>>;
+    public class Request : IRequest<Result<(string? FirstName, bool IsActive)>>;
 
-    public class Handler : BaseHandler<long?>, IRequestHandler<Request, Result<long?>>
+    public class Handler : BaseHandler, IRequestHandler<Request, Result<(string? FirstName, bool IsActive)>>
     {
         public Handler(BudgetRDbContext context, ServerContext serverContext)
             : base(context, serverContext)
         {
         }
 
-        public async Task<Result<long?>> Handle(Request request, CancellationToken cancellationToken)
+        public async Task<Result<(string? FirstName, bool IsActive)>> Handle(Request request, CancellationToken cancellationToken)
         {
             long? userId = _serverContext.UserId;
+            (string? FirstName, bool IsActive) user = (null, false);
 
-            if (userId.HasValue && _serverContext.IsActive)
+            if (_serverContext.UserId == null || !_serverContext.IsActive)
             {
-                return Result.Success(userId);
+                user.IsActive = false;
+                return Result.Success(user);
             }
 
-            userId = null;
+            user.FirstName = await _dbContext.Users
+                .AsNoTracking()
+                .Where(u => u.UserId == userId)
+                .Select(u => u.FirstName)
+                .SingleOrDefaultAsync();
 
-            return Result.Success(userId);
+            user.IsActive = _serverContext.IsActive;
+
+            return Result.Success(user);
         }
     }
 }

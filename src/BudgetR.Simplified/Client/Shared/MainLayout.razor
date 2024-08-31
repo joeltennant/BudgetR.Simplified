@@ -1,4 +1,8 @@
 ﻿@using BudgetR.Simplified.Client.Auth
+
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+
 @inherits LayoutComponentBase
 <MudThemeProvider />
 <MudPopoverProvider />
@@ -38,10 +42,18 @@
     <MudFab Color="Color.Tertiary" StartIcon="@Icons.Material.Filled.ArrowCircleUp" />
 </MudScrollToTop>
 
-<CheckUserStatus />
+@* <CheckUserStatus /> *@
 
 @code {
     bool _drawerOpen = true;
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!clientContext.IsLoggedIn)
+        {
+            NavigationManager.NavigateTo("login");
+        }
+    }
 
     void DrawerToggle()
     {

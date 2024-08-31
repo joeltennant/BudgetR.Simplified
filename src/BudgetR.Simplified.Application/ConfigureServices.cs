@@ -1,5 +1,4 @@
 ﻿using BudgetR.Simplified.Application.PipelineBehaviors;
-using MediatR;
 using MediatR.Pipeline;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
