@@ -1,4 +1,7 @@
-﻿using BudgetR.Simplified.Application.Handlers.Users;
+﻿using Ardalis.Result;
+using Ardalis.Result.AspNetCore;
+using BudgetR.Simplified.Application.Handlers.Users;
+using BudgetR.Simplified.Core;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,8 +16,18 @@ public class UsersController : BaseController
     // GET api/Users/loginUser
     [HttpGet]
     [Route("loginUser")]
-    public async Task<(string? FirstName, bool IsActive)> LoginUser()
+    [TranslateResultToActionResult]
+    public async Task<Result<(string? FirstName, bool IsActive)>> LoginUser()
     {
         return await _mediator.Send(new LoginUser.Request());
+    }
+
+    // POST api/Users/registerUser
+    [HttpPost]
+    [Route("registerUser")]
+    [TranslateResultToActionResult]
+    public async Task<Result<NoValue>> RegisterUser([FromBody] RegisterUser.Request register)
+    {
+        return await _mediator.Send(register);
     }
 }

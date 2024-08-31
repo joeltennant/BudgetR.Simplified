@@ -6,10 +6,10 @@
 
 <AuthorizeView>
     <Authorized>
-        <a href="#" @onclick="BeginSignOut">Log out</a>
+        <MudLink href="#" @onclick="BeginSignOut">Log out</MudLink>
     </Authorized>
     <NotAuthorized>
-        <a href="authentication/login">Log in</a>
+        <MudLink href="authentication/login">Log in</MudLink>
     </NotAuthorized>
 </AuthorizeView>
 

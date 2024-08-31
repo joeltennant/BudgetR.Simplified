@@ -1,27 +1,59 @@
 ﻿@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
+@inject HttpClient Http
+@inject ISnackbar Snackbar
+
 @page "/register"
+
 
 <PageTitle>Register</PageTitle>
 
 <h3>Finish Setting Up Account</h3>
+<br />
+Hello, @Email. Please finish registering and then you'll be all set.
 
-Hello, @Email
-
-<MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Activate">Register</MudButton>
+<MudForm Class="pt-6">
+    <MudItem xs="12" md="6">
+        <MudTextField Label="First Name" @bind-Value="@FirstName" Required="true" ValidationMessage="First Name is required" />
+    </MudItem>
+    <MudItem xs="12" md="6">
+        <MudTextField Label="Last Name" @bind-Value="@LastName" />
+    </MudItem>
+    <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="Activate">Register</MudButton>
+</MudForm>
 
 @code {
     public string Email { get; set; }
+    public string FirstName { get; set; }
+    public string LastName { get; set; }
+
     protected override async Task OnInitializedAsync()
     {
         var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
         Email = authState.User.Identity.Name;
     }
 
-    public void Activate()
+    public async Task Activate()
     {
-        //navigate to the register page
-        clientContext.UserIsActive = true;
-        NavigationManager.NavigateTo("/");
+        var request = new
+        {
+            Email = Email,
+            FirstName = FirstName,
+            LastName = LastName
+        };
+
+        var response = await Http.PostAsJsonAsync("api/Users/registerUser", request);
+
+        if (response.IsSuccessStatusCode)
+        {
+            clientContext.UserIsActive = true;
+            clientContext.FirstName = FirstName;
+            Snackbar.Add("Account created successfully", Severity.Success);
+            NavigationManager.NavigateTo("/");
+        }
+        else
+        {
+            Snackbar.Add("Error creating account.", Severity.Error);
+        }
     }
 }

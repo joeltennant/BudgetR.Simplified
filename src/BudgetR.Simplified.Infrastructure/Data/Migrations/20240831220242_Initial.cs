@@ -17,6 +17,7 @@ public partial class Initial : Migration
                 UserId = table.Column<long>(type: "bigint", nullable: false)
                     .Annotation("SqlServer:Identity", "1, 1"),
                 AuthenticationId = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                 UserType = table.Column<int>(type: "int", nullable: false),
@@ -59,19 +60,19 @@ public partial class Initial : Migration
 
         migrationBuilder.InsertData(
             table: "Users",
-            columns: new[] { "UserId", "AuthenticationId", "BusinessTransactionActivityId", "FirstName", "IsActive", "LastName", "UserType" },
-            values: new object[] { 1L, "", 1L, "System", false, null, 0 });
+            columns: new[] { "UserId", "AuthenticationId", "BusinessTransactionActivityId", "Email", "FirstName", "IsActive", "LastName", "UserType" },
+            values: new object[] { 1L, "", 1L, null, "System", false, null, 0 });
 
         migrationBuilder.InsertData(
             table: "BusinessTransactionActivities",
             columns: new[] { "BusinessTransactionActivityId", "CreatedAt", "ProcessName", "UserId" },
-            values: new object[] { 1L, new DateTime(2024, 8, 30, 12, 2, 15, 678, DateTimeKind.Local).AddTicks(2780), "Initial Seeding", 1L });
+            values: new object[] { 1L, new DateTime(2024, 8, 31, 16, 2, 42, 165, DateTimeKind.Local).AddTicks(7454), "Initial Seeding", 1L });
 
         migrationBuilder.CreateIndex(
             name: "IX_BusinessTransactionActivities_UserId",
             table: "BusinessTransactionActivities",
             column: "UserId",
-            unique: true,
+            unique: false,
             filter: "[UserId] IS NOT NULL");
     }
 
