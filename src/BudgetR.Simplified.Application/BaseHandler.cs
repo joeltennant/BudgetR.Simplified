@@ -1,5 +1,4 @@
-﻿using BudgetR.Simplified.Domain.Entities;
-using Microsoft.EntityFrameworkCore.Storage;
+﻿using Microsoft.EntityFrameworkCore.Storage;
 
 namespace BudgetR.Simplified.Application;
 public abstract class BaseHandler

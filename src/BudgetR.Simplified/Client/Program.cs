@@ -1,5 +1,5 @@
 using BudgetR.Simplified.Client;
-using BudgetR.Simplified.Core.StateManagement;
+using BudgetR.Simplified.Client.Domain.StateManagement;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;

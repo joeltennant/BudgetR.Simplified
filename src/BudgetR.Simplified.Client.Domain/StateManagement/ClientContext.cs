@@ -1,4 +1,4 @@
-﻿namespace BudgetR.Simplified.Core.StateManagement;
+﻿namespace BudgetR.Simplified.Client.Domain.StateManagement;
 public class ClientContext
 {
     public ClientContext()

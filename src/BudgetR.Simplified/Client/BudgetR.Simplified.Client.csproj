@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BudgetR.Simplified.Client.Domain\BudgetR.Simplified.Client.Domain.csproj" />
     <ProjectReference Include="..\..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
   </ItemGroup>
 

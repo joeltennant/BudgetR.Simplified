@@ -1,5 +1,4 @@
-﻿using BudgetR.Simplified.Domain.Entities;
-using MediatR.Pipeline;
+﻿using MediatR.Pipeline;
 using Microsoft.AspNetCore.Http;
 
 namespace BudgetR.Simplified.Application.PipelineBehaviors;
