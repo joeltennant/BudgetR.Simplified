@@ -1,5 +1,4 @@
 ﻿using BudgetR.Simplified.Core;
-using BudgetR.Simplified.Domain.Entities;
 using BudgetR.Simplified.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +17,6 @@ public class InactivatePastMonthsService
     {
         try
         {
-            BusinessTransactionActivity bta = new();
             var today = DateOnly.FromDateTime(DateTime.Now);
             IList<long> budgetMonthIds = new List<long>();
 
@@ -39,19 +37,7 @@ public class InactivatePastMonthsService
                 }
             }
 
-            if (pastMonthYears.IsPopulated())
-            {
-                bta = new BusinessTransactionActivity
-                {
-                    ProcessName = "System.InactivatePastMonths",
-                    UserId = 1,
-                    CreatedAt = DateTime.UtcNow
-                };
-
-                _context.BusinessTransactionActivities.Add(bta);
-                _context.SaveChanges();
-            }
-            else
+            if (!pastMonthYears.IsPopulated())
             {
                 return;
             }
@@ -60,10 +46,10 @@ public class InactivatePastMonthsService
                 .Where(x => pastMonthYears.Contains(x.MonthYearId))
                 .ExecuteUpdateAsync(a => a.SetProperty(p => p.IsActive, false));
 
-            budgetMonthIds = _context.BudgetMonths
-                .Where(x => pastMonthYears.Contains(x.MonthYearId))
-                .Select(x => x.BudgetMonthId)
-                .ToList();
+            //budgetMonthIds = _context.BudgetMonths
+            //    .Where(x => pastMonthYears.Contains(x.MonthYearId))
+            //    .Select(x => x.BudgetMonthId)
+            //    .ToList();
         }
         catch (Exception ex)
         {

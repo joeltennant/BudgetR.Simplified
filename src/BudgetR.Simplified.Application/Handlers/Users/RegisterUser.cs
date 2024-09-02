@@ -1,4 +1,6 @@
-﻿namespace BudgetR.Simplified.Application.Handlers.Users;
+﻿using BudgetR.Simplified.Services;
+
+namespace BudgetR.Simplified.Application.Handlers.Users;
 public class RegisterUser
 {
     public record Request(string? Email, string? FirstName, string? LastName) : IRequest<Result<NoValue>>;
@@ -55,13 +57,39 @@ public class RegisterUser
                 await _dbContext.Users.AddAsync(user);
                 await _dbContext.SaveChangesAsync();
 
+                await _dbContext.AddRangeAsync(BuildMonthBudgetList(user.UserId));
+                await _dbContext.SaveChangesAsync();
+
+                var inactivatePastMonths = new InactivatePastMonthsService(_dbContext).Execute();
+
                 await _dbContext.CommitTransactionContext(transaction);
                 return Result.Success();
             }
             catch (Exception ex)
             {
+                transaction.Dispose();
                 return Result.Error(ex.Message);
             }
+        }
+
+        private List<BudgetMonth> BuildMonthBudgetList(long UserId)
+        {
+            List<MonthYear> monthYears = _dbContext.MonthYears
+                .OrderBy(m => m.MonthYearId)
+                .ToList();
+
+            List<BudgetMonth> monthBudgets = new();
+
+            foreach (var monthYear in monthYears)
+            {
+                monthBudgets.Add(new BudgetMonth
+                {
+                    MonthYearId = monthYear.MonthYearId,
+                    UserId = UserId,
+                });
+            }
+
+            return monthBudgets;
         }
     }
 }

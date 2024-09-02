@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BudgetR.Simplified.Services;
+using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Application.Handlers.Users;
 public static class LoginUser
@@ -30,6 +31,8 @@ public static class LoginUser
                 .SingleOrDefaultAsync();
 
             user.IsActive = _serverContext.IsActive;
+
+            var inactivatePastMonths = new InactivatePastMonthsService(_dbContext).Execute();
 
             return Result.Success(user);
         }
