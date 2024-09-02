@@ -1,5 +1,4 @@
 ﻿using BudgetR.Simplified.Core.Enums;
-using System.ComponentModel.DataAnnotations;
 
 namespace BudgetR.Simplified.Domain.Entities;
 public class User

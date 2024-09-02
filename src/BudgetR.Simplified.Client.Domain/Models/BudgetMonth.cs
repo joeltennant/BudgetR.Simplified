@@ -1,6 +1,7 @@
 ﻿namespace BudgetR.Simplified.Client.Domain.Models;
-public class MonthYear
+public class BudgetMonth
 {
+    public long BudgetMonthId { get; set; }
     public long MonthYearId { get; set; }
 
     public int Month { get; set; }

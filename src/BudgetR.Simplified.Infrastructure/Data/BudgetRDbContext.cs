@@ -17,6 +17,7 @@ public class BudgetRDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<BusinessTransactionActivity> BusinessTransactionActivities { get; set; }
     public DbSet<MonthYear> MonthYears { get; set; }
+    public DbSet<BudgetMonth> BudgetMonths { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

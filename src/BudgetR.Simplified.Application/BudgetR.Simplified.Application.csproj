@@ -17,6 +17,7 @@
 		<ProjectReference Include="..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
 		<ProjectReference Include="..\BudgetR.Simplified.Domain\BudgetR.Simplified.Domain.csproj" />
 		<ProjectReference Include="..\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Infrastructure.csproj" />
+		<ProjectReference Include="..\BudgetR.Simplified.Services\BudgetR.Simplified.Services.csproj" />
 	</ItemGroup>
 
 </Project>

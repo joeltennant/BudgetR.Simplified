@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace BudgetR.Simplified.Domain.Entities;
+﻿namespace BudgetR.Simplified.Domain.Entities;
 public class BusinessTransactionActivity
 {
     [Key]
