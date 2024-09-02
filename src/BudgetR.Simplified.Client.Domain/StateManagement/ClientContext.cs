@@ -8,8 +8,52 @@ public class ClientContext
         MonthYears = new List<MonthYear>();
     }
 
-    public bool UserIsActive { get; set; }
-    public bool IsLoggedIn { get; set; }
-    public string? FirstName { get; set; }
-    public List<MonthYear> MonthYears { get; set; }
+    private bool _userIsActive;
+    private bool _isLoggedIn;
+    private string? _firstName;
+    private List<MonthYear> _monthYears;
+
+    public bool UserIsActive
+    {
+        get { return _userIsActive; }
+        set
+        {
+            _userIsActive = value;
+            NotifyStateChanged();
+        }
+    }
+
+    public bool IsLoggedIn
+    {
+        get { return _isLoggedIn; }
+        set
+        {
+            _isLoggedIn = value;
+            NotifyStateChanged();
+        }
+    }
+
+    public string? FirstName
+    {
+        get { return _firstName; }
+        set
+        {
+            _firstName = value;
+            NotifyStateChanged();
+        }
+    }
+
+    public List<MonthYear> MonthYears
+    {
+        get { return _monthYears; }
+        set
+        {
+            _monthYears = value;
+            NotifyStateChanged();
+        }
+    }
+
+    public event Action? OnChange;
+
+    private void NotifyStateChanged() => OnChange?.Invoke();
 }
