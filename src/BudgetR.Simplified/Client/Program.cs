@@ -25,6 +25,6 @@ builder.Services.AddOidcAuthentication(options =>
 
 builder.Services.AddMudServices();
 
-builder.Services.AddSingleton<ClientContext>();
+builder.Services.AddScoped<ClientContext>();
 
 await builder.Build().RunAsync();

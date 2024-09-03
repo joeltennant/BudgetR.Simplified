@@ -21,12 +21,11 @@
 
         if (user.IsActive == true)
         {
-            var months = await Http.GetFromJsonAsync<List<MonthYear>>("api/MonthYears/retrieveMonths");
-
             clientContext.UserIsActive = true;
             clientContext.IsLoggedIn = true;
             clientContext.FirstName = user.FirstName;
-            clientContext.MonthYears = months;
+            // clientContext.MonthYears = months;
+            await clientContext.MonthYear.LoadInitialMonthYears();
             NavigationManager.NavigateTo("/");
         }
         else

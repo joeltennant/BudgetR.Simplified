@@ -1,17 +1,14 @@
-﻿using BudgetR.Simplified.Client.Domain.Models;
-
-namespace BudgetR.Simplified.Client.Domain.StateManagement;
+﻿namespace BudgetR.Simplified.Client.Domain.StateManagement;
 public class ClientContext
 {
-    public ClientContext()
+    public ClientContext(HttpClient http)
     {
-        MonthYears = new List<MonthYear>();
+        MonthYear = new MonthYearState(http);
     }
 
     private bool _userIsActive;
     private bool _isLoggedIn;
     private string? _firstName;
-    private List<MonthYear> _monthYears;
 
     public bool UserIsActive
     {
@@ -43,17 +40,10 @@ public class ClientContext
         }
     }
 
-    public List<MonthYear> MonthYears
-    {
-        get { return _monthYears; }
-        set
-        {
-            _monthYears = value;
-            NotifyStateChanged();
-        }
-    }
-
     public event Action? OnChange;
 
     private void NotifyStateChanged() => OnChange?.Invoke();
+
+    //STATE
+    public MonthYearState MonthYear { get; set; }
 }

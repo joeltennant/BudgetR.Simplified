@@ -54,7 +54,7 @@ Hello, @Email. Please finish registering and then you'll be all set.
 
             clientContext.UserIsActive = true;
             clientContext.FirstName = FirstName;
-            clientContext.MonthYears = months;
+            await clientContext.MonthYear.LoadInitialMonthYears();
             Snackbar.Add("Account created successfully", Severity.Success);
             NavigationManager.NavigateTo("/");
         }
