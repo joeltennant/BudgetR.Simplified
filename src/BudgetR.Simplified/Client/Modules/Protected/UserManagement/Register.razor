@@ -50,8 +50,11 @@ Hello, @Email. Please finish registering and then you'll be all set.
 
         if (response.IsSuccessStatusCode)
         {
+            var months = await Http.GetFromJsonAsync<List<MonthYear>>("api/MonthYears/retrieveMonths");
+
             clientContext.UserIsActive = true;
             clientContext.FirstName = FirstName;
+            clientContext.MonthYears = months;
             Snackbar.Add("Account created successfully", Severity.Success);
             NavigationManager.NavigateTo("/");
         }

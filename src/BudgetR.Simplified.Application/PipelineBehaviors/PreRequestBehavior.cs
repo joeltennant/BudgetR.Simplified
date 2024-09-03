@@ -1,5 +1,6 @@
 ﻿using MediatR.Pipeline;
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace BudgetR.Simplified.Application.PipelineBehaviors;
 
@@ -22,7 +23,7 @@ public class PreRequestBehavior<TRequest> : IRequestPreProcessor<TRequest>
         _serverContext.BtaId = null;
 
         //string email = _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Name).Value;
-        var authenticationId = _httpContextAccessor.HttpContext?.User?.Identity?.Name;
+        var authenticationId = _httpContextAccessor.HttpContext?.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier).Value; ;
 
         if (authenticationId != null)
         {

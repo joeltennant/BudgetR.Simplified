@@ -1,22 +1,33 @@
-﻿@using BudgetR.Simplified.Core.StateManagement
+﻿@using BudgetR.Simplified.Client.Domain.Models
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
 
 @page "/login"
 
-You are being logged in.  Please wait.
+<MudGrid>
+    <MudItem xs="12" Class="d-flex justify-center pb-3">
+        Please wait while we load your account.
+    </MudItem>
+    <MudItem xs="12" Class="d-flex justify-center">
+        <MudProgressCircular Color="Color.Primary" Indeterminate="true" Style="height:70px;width:70px;" />
+    </MudItem>
+</MudGrid>
 
 @code {
     protected override async Task OnInitializedAsync()
     {
-        (string? FirstName, bool IsActive) user = await Http.GetFromJsonAsync<(string? FirstName, bool IsActive)>("api/Users/loginUser");
+        LoginUser user = await Http.GetFromJsonAsync<LoginUser>("api/Users/loginUser");
 
         if (user.IsActive == true)
         {
+            var months = await Http.GetFromJsonAsync<List<MonthYear>>("api/MonthYears/retrieveMonths");
+
             clientContext.UserIsActive = true;
             clientContext.IsLoggedIn = true;
             clientContext.FirstName = user.FirstName;
+            clientContext.MonthYears = months;
+            NavigationManager.NavigateTo("/");
         }
         else
         {
