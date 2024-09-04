@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Requets\" />
+    <ProjectReference Include="..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
   </ItemGroup>
 
 </Project>

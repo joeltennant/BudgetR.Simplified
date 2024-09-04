@@ -18,6 +18,8 @@ public class BudgetRDbContext : DbContext
     public DbSet<BusinessTransactionActivity> BusinessTransactionActivities { get; set; }
     public DbSet<MonthYear> MonthYears { get; set; }
     public DbSet<BudgetMonth> BudgetMonths { get; set; }
+    public DbSet<TransactionCategory> TransactionCategories { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
