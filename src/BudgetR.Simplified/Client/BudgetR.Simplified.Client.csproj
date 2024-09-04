@@ -25,6 +25,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Modules\Protected\BudgetMonths\Pages\" />
     <Folder Include="Modules\Public\" />
   </ItemGroup>
 
