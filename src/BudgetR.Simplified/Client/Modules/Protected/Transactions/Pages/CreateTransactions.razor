@@ -1,0 +1,50 @@
+﻿@page "/transactions/create"
+@using BudgetR.Simplified.Client.Domain.Models.Requets
+@using MudBlazor
+@inject HttpClient Http
+@inject ISnackbar Snackbar
+@inject NavigationManager NavigationManager
+
+<PageTitle>Create Transactions</PageTitle>
+
+<PageTemplate>
+    <ToolBarTitle>
+        <MudText Typo="Typo.h5">Create Transactions</MudText>
+    </ToolBarTitle>
+    <Body>
+        <MudGrid>
+            <MudItem xs="6">
+                <MudForm @ref="form" Model="transaction" OnValidSubmit="HandleValidSubmit">
+                    <MudTextField class="mt-2" Label="Description" @bind-Value="transaction.Description" Required="true" />
+                    <MudTextField class="mt-2" Label="Account Name" @bind-Value="transaction.AccountName" Required="true" />
+                    <MudNumericField class="mt-2" Label="Amount (Use negative value for expenses)" @bind-Value="transaction.Amount" Required="true" />
+                    @* <MudDatePicker Label="Transaction Date" @bind-Value="transaction.TransactionDate" Required="true" /> *@
+                    <MudDatePicker class="mt-2" Label="Transaction Date" Editable="true" @bind-Date="transaction.TransactionDate" Mask="@(new DateMask("MM/dd/yyyy"))" DateFormat="MM/dd/yyyy" Placeholder="en-US Date" />
+                    <MudTextField class="mt-2" Label="Category Name" @bind-Value="transaction.CategoryName" Required="true" />
+
+                    <MudButton Type="ButtonType.Submit" onclick="Create" class="mt-2" Variant="Variant.Outlined" Color="Color.Primary">Create</MudButton>
+                </MudForm>
+            </MudItem>
+        </MudGrid>
+    </Body>
+</PageTemplate>
+
+@code {
+    private CreateTransaction transaction = new CreateTransaction();
+    private MudForm form;
+
+    private async Task Create()
+    {
+        var response = await Http.PostAsJsonAsync("api/Transactions/createTransaction", transaction);
+
+        if (response.IsSuccessStatusCode)
+        {
+            Snackbar.Add("Transaction created successfully", Severity.Success);
+            NavigationManager.NavigateTo("/transactions/month");
+        }
+        else
+        {
+            Snackbar.Add("Error creating transaction.", Severity.Error);
+        }
+    }
+}

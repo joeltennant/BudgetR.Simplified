@@ -35,6 +35,9 @@ public class TransactionService
                 .Select(x => x.BudgetMonthId)
                 .FirstAsync();
         }
+
+        await _dbContext.Transactions.AddRangeAsync(transactions);
+        await _dbContext.SaveChangesAsync();
     }
 
     private TransactionType? SetTransactionType(decimal amount, string? description)

@@ -10,10 +10,10 @@ public class TransactionsController : BaseController
     }
 
     [HttpPost]
-    [Route("createTransactions")]
+    [Route("createTransaction")]
     [TranslateResultToActionResult]
-    public async Task<Result<NoValue>> CreateTransactions(List<CreateTransactions.TransactionDto> transactions)
+    public async Task<Result<NoValue>> CreateTransactions([FromBody] CreateTransactions.TransactionDto transaction)
     {
-        return await _mediator.Send(new CreateTransactions.Request(transactions));
+        return await _mediator.Send(new CreateTransactions.Request(transaction));
     }
 }
