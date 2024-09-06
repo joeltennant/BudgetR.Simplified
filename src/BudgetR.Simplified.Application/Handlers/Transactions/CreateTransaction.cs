@@ -1,7 +1,7 @@
 ﻿using BudgetR.Simplified.Services.Transactions;
 
 namespace BudgetR.Simplified.Application.Handlers.Transactions;
-public class CreateTransactions
+public class CreateTransaction
 {
     public record Request(TransactionDto transaction) : IRequest<Result<NoValue>>;
 
@@ -34,8 +34,7 @@ public class CreateTransactions
                 .MinimumLength(3);
             RuleFor(x => x.transaction.Amount)
                 .NotNull()
-                .NotEmpty()
-                .GreaterThan(0);
+                .NotEmpty();
             RuleFor(x => x.transaction.TransactionDate)
                 .NotEmpty()
                 .NotNull();
@@ -65,7 +64,7 @@ public class CreateTransactions
 
             try
             {
-                //transaction = await _dbContext.BeginTransactionContext();
+                transaction = await _dbContext.BeginTransactionContext();
 
                 long btaId = await CreateBta();
 
@@ -73,7 +72,6 @@ public class CreateTransactions
                 {
                     Description = request.transaction.Description,
                     AccountName = request.transaction.AccountName,
-                    //TransactionType = DateOnly.FromDateTime(request.transaction.TransactionType),
                     Amount = request.transaction.Amount,
                     TransactionDate = DateOnly.FromDateTime(request.transaction.TransactionDate.Value),
                     CategoryName = request.transaction.CategoryName
@@ -84,7 +82,8 @@ public class CreateTransactions
                 var transactionService = new TransactionService(_dbContext, _serverContext);
                 await transactionService.ProcessTransactions(transactions, btaId);
 
-                //await _dbContext.CommitTransactionContext(transaction);
+                await _dbContext.CommitTransactionContext(transaction);
+
                 return Result.Success();
             }
             catch (Exception ex)

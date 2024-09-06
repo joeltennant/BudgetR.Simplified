@@ -12,8 +12,16 @@ public class TransactionsController : BaseController
     [HttpPost]
     [Route("createTransaction")]
     [TranslateResultToActionResult]
-    public async Task<Result<NoValue>> CreateTransactions([FromBody] CreateTransactions.TransactionDto transaction)
+    public async Task<Result<NoValue>> CreateTransactions([FromBody] CreateTransaction.TransactionDto transaction)
     {
-        return await _mediator.Send(new CreateTransactions.Request(transaction));
+        return await _mediator.Send(new CreateTransaction.Request(transaction));
+    }
+
+    [HttpGet("{id}")]
+    //[Route("getTransactionsByMonth")]
+    [TranslateResultToActionResult]
+    public async Task<Result<List<TransactionsByMonth.TransactionDto>>> GetTransactionsByMonth(long id)
+    {
+        return await _mediator.Send(new TransactionsByMonth.Request(id));
     }
 }

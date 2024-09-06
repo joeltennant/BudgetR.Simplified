@@ -1,21 +1,46 @@
-﻿@page "/transactions/month"
+﻿@inject HttpClient Http
+@page "/transactions/month"
 <PageTitle>Transactions</PageTitle>
 
 <PageTemplate>
     <ToolBarTitle>
-        Transactions
+        Transactions - @clientContext.MonthYear.CurrentMonthYear.GetMonthName(), @clientContext.MonthYear.CurrentMonthYear.Year
     </ToolBarTitle>
     <ToolBarRightSide>
-        <MudFab Color="Color.Primary" Href="/transactions/create" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Elevation="0"/>
+        <MudFab Color="Color.Primary" Href="/transactions/create" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Elevation="0" />
     </ToolBarRightSide>
     <Body>
-        Text Here again
+        <MudGrid>
+            <MudItem xs="10">
+                <MudTable Items="@Transactions" Hover="true" Breakpoint="Breakpoint.Sm" LoadingProgressColor="Color.Info">
+                    <HeaderContent>
+                        <MudTh>Transaction Date</MudTh>
+                        <MudTh>Description</MudTh>
+                        <MudTh>Account Name</MudTh>
+                        <MudTh>Transaction Type</MudTh>
+                        <MudTh>Amount</MudTh>
+                        <MudTh>Category Name</MudTh>
+                    </HeaderContent>
+                    <RowTemplate>
+                        <MudTd>@context.TransactionDate</MudTd>
+                        <MudTd>@context.Description</MudTd>
+                        <MudTd>@context.AccountName</MudTd>
+                        <MudTd>@context.TransactionType</MudTd>
+                        <MudTd>@context.Amount</MudTd>
+                        <MudTd>@context.CategoryName</MudTd>
+                    </RowTemplate>
+                </MudTable>
+            </MudItem>
+        </MudGrid>
     </Body>
 </PageTemplate>
 
 @code {
-    // protected override async Task OnInitializedAsync()
-    // {
+    public List<Transaction> Transactions { get; set; } = new();
 
-    // }
+    protected override async Task OnInitializedAsync()
+    {
+        long budgetMonthId = clientContext.MonthYear.CurrentMonthYear.BudgetMonthId;
+        Transactions = await Http.GetFromJsonAsync<List<Transaction>>($"api/Transactions/{budgetMonthId}");
+    }
 }
