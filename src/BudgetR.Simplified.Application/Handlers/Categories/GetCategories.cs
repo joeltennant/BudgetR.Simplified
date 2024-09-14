@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using BudgetR.Simplified.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Application.Handlers.Categories;
 public class GetCategories
@@ -9,6 +10,8 @@ public class GetCategories
     {
         public long TransactionCategoryId { get; set; }
         public string CategoryName { get; set; }
+        public DateTime ModifiedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
     }
 
     public class Handler : BaseHandler, IRequestHandler<Request, Result<List<CategoryItem>>>
@@ -29,7 +32,9 @@ public class GetCategories
                                    .Select(x => new CategoryItem
                                    {
                                        TransactionCategoryId = x.TransactionCategoryId,
-                                       CategoryName = x.CategoryName
+                                       CategoryName = x.CategoryName,
+                                       ModifiedAt = EF.Property<DateTime>(x, DomainConstants.ModifiedAt),
+                                       CreatedAt = EF.Property<DateTime>(x, DomainConstants.CreatedAt)
                                    })
                                    .ToListAsync();
 

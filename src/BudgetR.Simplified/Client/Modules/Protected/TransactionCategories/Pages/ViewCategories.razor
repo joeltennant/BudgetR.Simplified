@@ -1,6 +1,7 @@
 ﻿@page "/transactions/categories"
 @using BudgetR.Simplified.Client.Domain.Services
 @using BudgetR.Simplified.Client.Modules.Protected.TransactionCategories.Dialogs
+@using BudgetR.Simplified.Core
 @implements IDisposable
 @inject IDialogService DialogService
 @inject ISnackbar Snackbar
@@ -17,7 +18,7 @@
     </ToolBarRightSide>
     <Body>
         <MudGrid>
-            <MudItem xs="8">
+            <MudItem xs="10">
                 <MudDataGrid T="TransactionCategory"
                              MultiSelection="true"
                              Items="@clientContext.TransactionCategories.Categories"
@@ -38,7 +39,9 @@
                     </ToolBarContent>
                     <Columns>
                         <SelectColumn T="TransactionCategory" />
-                        <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.ModifiedAt.ToLocalTime()" Title="Modified At" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime()" Title="Created At" Sortable="true" Filterable="true" />
                         <TemplateColumn CellClass="d-flex justify-end" Title="Actions">
                             <CellTemplate>
                                 <MudIconButton 
@@ -133,5 +136,4 @@
             Snackbar.Add("Category editing didn't work!", Severity.Info);
         }
     }
-
 }
