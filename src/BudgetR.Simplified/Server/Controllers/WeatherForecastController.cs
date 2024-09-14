@@ -1,6 +1,5 @@
 using BudgetR.Simplified.Core;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 
 namespace BudgetR.Simplified.Controllers;
 [ApiController]

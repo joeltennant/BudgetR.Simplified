@@ -1,0 +1,45 @@
+﻿@using BudgetR.Simplified.Client.Domain.Services
+@inject TransactionCategoryService categoryService
+
+<MudDialog>
+    <TitleContent>
+        Create Category
+    </TitleContent>
+    <DialogContent>
+        <MudForm>
+            <MudTextField Label="Category Name" Required="true" @bind-Value="categoryName" />
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private MudDialogInstance MudDialog { get; set; }
+
+    private string categoryName;
+
+    private async Task Submit()
+    {
+        if (string.IsNullOrWhiteSpace(categoryName))
+        {
+            return;
+        }
+
+        var isSucess = await categoryService.CreateTransactionCategory(categoryName);
+
+        if (isSucess)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        else
+        {
+            MudDialog.Close(DialogResult.Ok(false));
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

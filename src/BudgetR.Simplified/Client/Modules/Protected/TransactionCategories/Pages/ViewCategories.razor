@@ -1,0 +1,113 @@
+﻿@page "/transactions/categories"
+@using BudgetR.Simplified.Client.Domain.Services
+@using BudgetR.Simplified.Client.Modules.Protected.TransactionCategories.Dialogs
+@implements IDisposable
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+@inject TransactionCategoryService categoryService
+
+<PageTitle>Transaction Categories</PageTitle>
+
+<PageTemplate>
+    <ToolBarTitle>
+        <MudText Typo="Typo.h5">Transaction Categories</MudText>
+    </ToolBarTitle>
+    <ToolBarRightSide>
+        <MudFab Color="Color.Primary" onclick="AddCategory" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Elevation="0" />
+    </ToolBarRightSide>
+    <Body>
+        <MudGrid>
+            <MudItem xs="8">
+                <MudDataGrid T="TransactionCategory"
+                             MultiSelection="true"
+                             Items="@clientContext.TransactionCategories.Categories"
+                             SortMode="SortMode.Multiple"
+                             Filterable="true" QuickFilter="@_quickFilter"
+                             Hover="true"
+                             Dense="true"
+                             Striped="true"
+                             Bordered="true"
+                             Hideable="true">
+                    <ToolBarContent>
+                        <MudSpacer />
+                        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
+                                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
+                    </ToolBarContent>
+                    <Columns>
+                        <SelectColumn T="TransactionCategory" />
+                        <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="false" Filterable="false" />
+                        <TemplateColumn CellClass="d-flex justify-end">
+                            <CellTemplate>
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" onclick="(()=>DeleteCategory(context.Item))" />
+                            </CellTemplate>
+                        </TemplateColumn>
+                    </Columns>
+                    <PagerContent>
+                        <MudDataGridPager T="TransactionCategory" PageSizeOptions="@pageSizeOptions" />
+                    </PagerContent>
+                </MudDataGrid>
+            </MudItem>
+        </MudGrid>
+    </Body>
+</PageTemplate>
+
+@code {
+    private string _searchString;
+    private bool _sortNameByLength;
+    private List<string> _events = new();
+    private int[] pageSizeOptions = new int[] { 100, 50, 20, 10 };
+
+    private Func<TransactionCategory, bool> _quickFilter => x =>
+    {
+        if (string.IsNullOrWhiteSpace(_searchString))
+            return true;
+
+        if (x.CategoryName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
+            return true;
+
+        return false;
+    };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await categoryService.LoadTransactionCategories();
+        clientContext.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        clientContext.OnChange -= StateHasChanged;
+        clientContext.TransactionCategories.Clear();
+    }
+
+    private async Task AddCategory()
+    {
+        var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        var dialog = await DialogService.ShowAsync<CreateCategoryDialog>("Create Category", options);
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            Snackbar.Add("Category created successfully", Severity.Success);
+            // clientContext.OnChange -= StateHasChanged;
+        }
+        else
+        {
+            Snackbar.Add("Category creation was canceled", Severity.Info);
+        }
+    }
+
+    private async Task DeleteCategory(TransactionCategory category)
+    {
+        var isSucess = await categoryService.DeleteTransactionCategory(category.TransactionCategoryId);
+        if (isSucess)
+        {
+            Snackbar.Add($"{category.CategoryName} deleted successfully", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Error deleting category", Severity.Error);
+        }
+    }
+}

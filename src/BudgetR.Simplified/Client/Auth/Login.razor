@@ -1,7 +1,9 @@
 ﻿@using BudgetR.Simplified.Client.Domain.Models
+@using BudgetR.Simplified.Client.Domain.Services
 @using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject HttpClient Http
 @inject NavigationManager NavigationManager
+@inject MonthYearService monthYearService
 @attribute [Authorize]
 
 @page "/login"
@@ -25,8 +27,7 @@
             clientContext.UserIsActive = true;
             clientContext.IsLoggedIn = true;
             clientContext.FirstName = user.FirstName;
-            // clientContext.MonthYears = months;
-            await clientContext.MonthYear.LoadInitialMonthYears();
+            await monthYearService.LoadInitialMonthYears();
             NavigationManager.NavigateTo("/");
         }
         else

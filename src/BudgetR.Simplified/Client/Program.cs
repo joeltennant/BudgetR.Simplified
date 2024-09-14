@@ -1,4 +1,5 @@
 using BudgetR.Simplified.Client;
+using BudgetR.Simplified.Client.Domain.Services;
 using BudgetR.Simplified.Client.Domain.StateManagement;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
@@ -25,6 +26,9 @@ builder.Services.AddOidcAuthentication(options =>
 
 builder.Services.AddMudServices();
 
-builder.Services.AddScoped<ClientContext>();
+builder.Services.AddSingleton<ClientContext>();
+builder.Services.AddScoped<TransactionCategoryService>();
+builder.Services.AddScoped<TransactionService>();
+builder.Services.AddScoped<MonthYearService>();
 
 await builder.Build().RunAsync();

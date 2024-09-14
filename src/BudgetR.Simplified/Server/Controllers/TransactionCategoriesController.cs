@@ -36,9 +36,8 @@ public class TransactionCategoriesController : BaseController
         return await _mediator.Send(request);
     }
 
-    // DELETE api/TransactionCategories/deleteTransactionCategory
+    // DELETE api/TransactionCategories/deleteTransactionCategory/id
     [HttpDelete("{id}")]
-    [Route("deleteTransactionCategory")]
     [TranslateResultToActionResult]
     public async Task<Result<NoValue>> DeleteTransactionCategory(long id)
     {

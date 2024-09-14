@@ -1,7 +1,9 @@
-﻿@inject AuthenticationStateProvider AuthenticationStateProvider
+﻿@using BudgetR.Simplified.Client.Domain.Services
+@inject AuthenticationStateProvider AuthenticationStateProvider
 @inject NavigationManager NavigationManager
 @inject HttpClient Http
 @inject ISnackbar Snackbar
+@inject MonthYearService monthYearService
 
 @page "/register"
 
@@ -54,7 +56,7 @@ Hello, @Email. Please finish registering and then you'll be all set.
 
             clientContext.UserIsActive = true;
             clientContext.FirstName = FirstName;
-            await clientContext.MonthYear.LoadInitialMonthYears();
+            await monthYearService.LoadInitialMonthYears();
             Snackbar.Add("Account created successfully", Severity.Success);
             NavigationManager.NavigateTo("/");
         }

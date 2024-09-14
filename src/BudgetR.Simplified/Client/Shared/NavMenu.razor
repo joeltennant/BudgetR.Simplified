@@ -3,14 +3,13 @@
         <MudNavLink Href="/" Match="NavLinkMatch.All">Dashboard</MudNavLink>
         <MudNavLink Href="/counter" Match="NavLinkMatch.Prefix">Counter</MudNavLink>
         <MudNavLink Href="/fetchdata" Match="NavLinkMatch.Prefix">Weather</MudNavLink>
-        <MudNavLink Href="/transactions/month" Match="NavLinkMatch.Prefix">Transactions</MudNavLink>
-     @*    <MudNavLink Href="/accounts" Match="NavLinkMatch.Prefix">Accounts</MudNavLink>
+        @*    <MudNavLink Href="/accounts" Match="NavLinkMatch.Prefix">Accounts</MudNavLink>
         <MudNavLink Href="/months" Match="NavLinkMatch.Prefix">Months</MudNavLink>
         <MudNavLink Href="/expenses" Match="NavLinkMatch.Prefix">Expenses</MudNavLink>
         <MudNavLink Href="/incomes" Match="NavLinkMatch.Prefix">Incomes</MudNavLink> *@
-        @*  <MudNavGroup Title="Settings" Expanded="true">
-        <MudNavLink Href="/users" Match="NavLinkMatch.Prefix">Users</MudNavLink>
-        <MudNavLink Href="/security" Match="NavLinkMatch.Prefix">Security</MudNavLink>
-        </MudNavGroup> *@
+        <MudNavGroup Title="Transactions" Expanded="true">
+            <MudNavLink Href="/transactions/month" Match="NavLinkMatch.Prefix">Transactions</MudNavLink>
+            <MudNavLink Href="/transactions/categories" Match="NavLinkMatch.Prefix">Categories</MudNavLink>
+        </MudNavGroup>
     </MudNavMenu>
 </MudPaper>

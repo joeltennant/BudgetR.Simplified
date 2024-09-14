@@ -1,9 +1,10 @@
 ﻿namespace BudgetR.Simplified.Client.Domain.StateManagement;
-public class ClientContext
+public class ClientContext : BaseState
 {
-    public ClientContext(HttpClient http)
+    public ClientContext()
     {
-        MonthYear = new MonthYearState(http);
+        MonthYear = new();
+        TransactionCategories = new();
     }
 
     private bool _userIsActive;
@@ -40,10 +41,11 @@ public class ClientContext
         }
     }
 
-    public event Action? OnChange;
+    //public event Action? OnChange;
 
-    private void NotifyStateChanged() => OnChange?.Invoke();
+    //private void NotifyStateChanged() => OnChange?.Invoke();
 
     //STATE
     public MonthYearState MonthYear { get; set; }
+    public TransactionCategoriesState TransactionCategories { get; set; }
 }

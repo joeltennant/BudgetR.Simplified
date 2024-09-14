@@ -1,10 +1,7 @@
 ﻿namespace BudgetR.Simplified.Client.Domain.StateManagement;
 public class TransactionsByMonth : BaseState
 {
-    private readonly HttpClient Http;
-
-    public TransactionsByMonth(HttpClient http)
+    public TransactionsByMonth()
     {
-        Http = http;
     }
 }
