@@ -26,6 +26,11 @@ public class TransactionCategoriesState : BaseState
 
     #region --Get--
 
+    //check if already exists by category name
+    public bool Exists(string categoryName)
+    {
+        return Categories.Any(x => x.CategoryName == categoryName);
+    }
 
     #endregion
 

@@ -14,6 +14,11 @@ public class TransactionCategoryService : ServiceBase
 
     public async Task<bool> CreateTransactionCategory(string categoryName)
     {
+        if (ClientContext.TransactionCategories.Exists(categoryName))
+        {
+            return false;
+        }
+
         var response = await Http.PostAsJsonAsync("api/TransactionCategories/createTransactionCategory", new { CategoryName = categoryName });
 
         if (response.IsSuccessStatusCode)
@@ -49,6 +54,11 @@ public class TransactionCategoryService : ServiceBase
 
     public async Task<bool> EditTransactionCategory(long id, string categoryName)
     {
+        if (ClientContext.TransactionCategories.Exists(categoryName))
+        {
+            return false;
+        }
+
         var now = DateTime.Now;
         var response = await Http.PutAsJsonAsync("api/TransactionCategories/renameTransactionCategory", new { CategoryId = id, NewCategoryName = categoryName });
 
