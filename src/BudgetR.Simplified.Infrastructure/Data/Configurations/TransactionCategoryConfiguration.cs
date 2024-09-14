@@ -9,8 +9,8 @@ public class TransactionCategoryConfiguration : IEntityTypeConfiguration<Transac
                                           a =>
                                           {
                                               a.UseHistoryTable("TransactionCategoryHistory");
-                                              a.HasPeriodStart(DomainConstants.CreatedAt);
-                                              a.HasPeriodEnd(DomainConstants.ModifiedAt);
+                                              a.HasPeriodStart(DomainConstants.Started);
+                                              a.HasPeriodEnd(DomainConstants.Ended);
                                           }));
     }
 }

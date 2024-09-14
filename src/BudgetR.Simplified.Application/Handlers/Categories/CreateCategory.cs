@@ -40,7 +40,8 @@ public class CreateCategory
                 var transactionCategory = new TransactionCategory
                 {
                     CategoryName = request.CategoryName,
-                    UserId = _serverContext.UserId
+                    UserId = _serverContext.UserId,
+                    CreatedAt = DateTime.UtcNow
                 };
 
                 await _dbContext.TransactionCategories.AddAsync(transactionCategory);
@@ -48,7 +49,7 @@ public class CreateCategory
 
                 await _dbContext.CommitTransactionContext(transaction);
 
-                return Result.Success();
+                return Result.Success(transactionCategory.TransactionCategoryId);
             }
             catch (Exception ex)
             {

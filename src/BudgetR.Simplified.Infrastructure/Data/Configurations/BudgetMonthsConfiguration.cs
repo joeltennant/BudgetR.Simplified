@@ -9,8 +9,8 @@ public class BudgetMonthsConfiguration : IEntityTypeConfiguration<BudgetMonth>
                                           a =>
                                           {
                                               a.UseHistoryTable("BudgetMonthHistory");
-                                              a.HasPeriodStart(DomainConstants.CreatedAt);
-                                              a.HasPeriodEnd(DomainConstants.ModifiedAt);
+                                              a.HasPeriodStart(DomainConstants.Started);
+                                              a.HasPeriodEnd(DomainConstants.Ended);
                                           }));
     }
 }

@@ -40,8 +40,8 @@
                     <Columns>
                         <SelectColumn T="TransactionCategory" />
                         <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="true" Filterable="true" />
-                        <PropertyColumn Property="x => x.ModifiedAt.ToLocalTime()" Title="Modified At" Sortable="true" Filterable="true" />
-                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime()" Title="Created At" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.ModifiedAt.ToLocalTime().RemoveSeconds()" Title="Modified At" Sortable="true" Filterable="true" Editable="false" />
+                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime().RemoveSeconds()" Title="Created At" Sortable="true" Filterable="true" Editable="false" />
                         <TemplateColumn CellClass="d-flex justify-end" Title="Actions">
                             <CellTemplate>
                                 <MudIconButton 

@@ -9,8 +9,8 @@ internal class UserConfiguration : IEntityTypeConfiguration<User>
                         a => a.IsTemporal(
                                   a =>
                                   {
-                                      a.HasPeriodStart(DomainConstants.CreatedAt);
-                                      a.HasPeriodEnd(DomainConstants.ModifiedAt);
+                                      a.HasPeriodStart(DomainConstants.Started);
+                                      a.HasPeriodEnd(DomainConstants.Ended);
                                       a.UseHistoryTable("UserHistory");
                                   }));
 

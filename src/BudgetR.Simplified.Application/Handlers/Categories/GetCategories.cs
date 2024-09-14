@@ -33,8 +33,8 @@ public class GetCategories
                                    {
                                        TransactionCategoryId = x.TransactionCategoryId,
                                        CategoryName = x.CategoryName,
-                                       ModifiedAt = EF.Property<DateTime>(x, DomainConstants.ModifiedAt),
-                                       CreatedAt = EF.Property<DateTime>(x, DomainConstants.CreatedAt)
+                                       ModifiedAt = EF.Property<DateTime>(x, DomainConstants.Started),
+                                       CreatedAt = x.CreatedAt
                                    })
                                    .ToListAsync();
 

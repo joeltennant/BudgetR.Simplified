@@ -1,6 +1,6 @@
 ﻿namespace BudgetR.Simplified.Domain;
 public class DomainConstants
 {
-    public const string CreatedAt = "CreatedAt";
-    public const string ModifiedAt = "ModifiedAt";
+    public const string Started = "Started";
+    public const string Ended = "Ended";
 }

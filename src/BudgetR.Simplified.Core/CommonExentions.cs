@@ -15,4 +15,8 @@ public static class CommonExentions
     {
         return string.IsNullOrWhiteSpace(value);
     }
+    public static string RemoveSeconds(this DateTime date)
+    {
+        return date.ToString("g");
+    }
 }

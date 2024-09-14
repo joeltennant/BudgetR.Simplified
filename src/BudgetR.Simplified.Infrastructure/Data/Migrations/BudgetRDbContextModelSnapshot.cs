@@ -31,20 +31,15 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("BudgetMonthId"));
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedAt");
-
                     b.Property<decimal>("Earned")
                         .HasPrecision(19, 2)
                         .HasColumnType("decimal(19,2)")
                         .HasColumnOrder(3);
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime>("Ended")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
-                        .HasColumnName("ModifiedAt");
+                        .HasColumnName("Ended");
 
                     b.Property<long>("MonthYearId")
                         .HasColumnType("bigint")
@@ -54,6 +49,11 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         .HasPrecision(19, 2)
                         .HasColumnType("decimal(19,2)")
                         .HasColumnOrder(2);
+
+                    b.Property<DateTime>("Started")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Started");
 
                     b.Property<long>("UserId")
                         .HasColumnType("bigint")
@@ -71,11 +71,11 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                             {
                                 ttb.UseHistoryTable("BudgetMonthHistory");
                                 ttb
-                                    .HasPeriodStart("CreatedAt")
-                                    .HasColumnName("CreatedAt");
+                                    .HasPeriodStart("Started")
+                                    .HasColumnName("Started");
                                 ttb
-                                    .HasPeriodEnd("ModifiedAt")
-                                    .HasColumnName("ModifiedAt");
+                                    .HasPeriodEnd("Ended")
+                                    .HasColumnName("Ended");
                             }));
                 });
 
@@ -103,7 +103,6 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                     b.HasKey("BusinessTransactionActivityId");
 
                     b.HasIndex("UserId")
-                        .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("BusinessTransactionActivities");
@@ -112,7 +111,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             BusinessTransactionActivityId = 1L,
-                            CreatedAt = new DateTime(2024, 9, 14, 16, 11, 13, 752, DateTimeKind.Local).AddTicks(658),
+                            CreatedAt = new DateTime(2024, 9, 14, 17, 7, 31, 801, DateTimeKind.Local).AddTicks(6535),
                             ProcessName = "Initial Seeding",
                             UserId = 1L
                         });
@@ -129,6 +128,9 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
 
                     b.Property<long?>("BusinessTransactionActivityId")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit")
@@ -156,6 +158,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 1L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -164,6 +167,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 2L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 29,
@@ -172,6 +176,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 3L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -180,6 +185,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 4L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -188,6 +194,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 5L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -196,6 +203,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 6L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -204,6 +212,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 7L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -212,6 +221,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 8L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -220,6 +230,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 9L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -228,6 +239,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 10L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -236,6 +248,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 11L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -244,6 +257,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 12L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -252,6 +266,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 13L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -260,6 +275,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 14L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -268,6 +284,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 15L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -276,6 +293,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 16L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -284,6 +302,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 17L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -292,6 +311,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 18L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -300,6 +320,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 19L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -308,6 +329,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 20L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -316,6 +338,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 21L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -324,6 +347,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 22L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -332,6 +356,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 23L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -340,6 +365,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 24L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -348,6 +374,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 25L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -356,6 +383,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 26L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -364,6 +392,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 27L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -372,6 +401,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 28L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -380,6 +410,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 29L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -388,6 +419,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 30L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -396,6 +428,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 31L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -404,6 +437,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 32L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -412,6 +446,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 33L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -420,6 +455,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 34L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -428,6 +464,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 35L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -436,6 +473,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 36L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -444,6 +482,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 37L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -452,6 +491,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 38L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -460,6 +500,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 39L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -468,6 +509,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 40L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -476,6 +518,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 41L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -484,6 +527,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 42L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -492,6 +536,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 43L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -500,6 +545,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 44L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -508,6 +554,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 45L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -516,6 +563,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 46L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -524,6 +572,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 47L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -532,6 +581,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 48L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -540,6 +590,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 49L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -548,6 +599,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 50L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 29,
@@ -556,6 +608,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 51L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -564,6 +617,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 52L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -572,6 +626,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 53L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -580,6 +635,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 54L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -588,6 +644,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 55L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -596,6 +653,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 56L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -604,6 +662,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 57L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -612,6 +671,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 58L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -620,6 +680,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 59L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -628,6 +689,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 60L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -636,6 +698,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 61L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -644,6 +707,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 62L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -652,6 +716,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 63L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -660,6 +725,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 64L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -668,6 +734,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 65L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -676,6 +743,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 66L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -684,6 +752,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 67L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -692,6 +761,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 68L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -700,6 +770,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 69L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -708,6 +779,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 70L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -716,6 +788,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 71L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -724,6 +797,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 72L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -732,6 +806,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 73L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -740,6 +815,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 74L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -748,6 +824,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 75L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -756,6 +833,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 76L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -764,6 +842,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 77L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -772,6 +851,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 78L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -780,6 +860,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 79L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -788,6 +869,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 80L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -796,6 +878,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 81L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -804,6 +887,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 82L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -812,6 +896,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 83L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -820,6 +905,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 84L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -828,6 +914,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 85L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -836,6 +923,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 86L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -844,6 +932,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 87L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -852,6 +941,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 88L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -860,6 +950,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 89L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -868,6 +959,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 90L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -876,6 +968,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 91L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -884,6 +977,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 92L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -892,6 +986,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 93L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -900,6 +995,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 94L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -908,6 +1004,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 95L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -916,6 +1013,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 96L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -924,6 +1022,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 97L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -932,6 +1031,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 98L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 29,
@@ -940,6 +1040,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 99L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -948,6 +1049,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 100L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -956,6 +1058,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 101L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -964,6 +1067,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 102L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -972,6 +1076,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 103L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -980,6 +1085,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 104L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -988,6 +1094,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 105L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -996,6 +1103,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 106L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -1004,6 +1112,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 107L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -1012,6 +1121,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 108L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -1020,6 +1130,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 109L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 1,
                             NumberOfDays = 31,
@@ -1028,6 +1139,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 110L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 2,
                             NumberOfDays = 28,
@@ -1036,6 +1148,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 111L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 3,
                             NumberOfDays = 31,
@@ -1044,6 +1157,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 112L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 4,
                             NumberOfDays = 30,
@@ -1052,6 +1166,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 113L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 5,
                             NumberOfDays = 31,
@@ -1060,6 +1175,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 114L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 6,
                             NumberOfDays = 30,
@@ -1068,6 +1184,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 115L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 7,
                             NumberOfDays = 31,
@@ -1076,6 +1193,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 116L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 8,
                             NumberOfDays = 31,
@@ -1084,6 +1202,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 117L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 9,
                             NumberOfDays = 30,
@@ -1092,6 +1211,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 118L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 10,
                             NumberOfDays = 31,
@@ -1100,6 +1220,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 119L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 11,
                             NumberOfDays = 30,
@@ -1108,6 +1229,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             MonthYearId = 120L,
+                            CreatedAt = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsActive = true,
                             Month = 12,
                             NumberOfDays = 31,
@@ -1209,14 +1331,17 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         .HasColumnOrder(1);
 
                     b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedAt");
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime>("Ended")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
-                        .HasColumnName("ModifiedAt");
+                        .HasColumnName("Ended");
+
+                    b.Property<DateTime>("Started")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Started");
 
                     b.Property<long?>("UserId")
                         .HasColumnType("bigint")
@@ -1234,11 +1359,11 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                             {
                                 ttb.UseHistoryTable("TransactionCategoryHistory");
                                 ttb
-                                    .HasPeriodStart("CreatedAt")
-                                    .HasColumnName("CreatedAt");
+                                    .HasPeriodStart("Started")
+                                    .HasColumnName("Started");
                                 ttb
-                                    .HasPeriodEnd("ModifiedAt")
-                                    .HasColumnName("ModifiedAt");
+                                    .HasPeriodEnd("Ended")
+                                    .HasColumnName("Ended");
                             }));
                 });
 
@@ -1259,14 +1384,14 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         .HasColumnType("bigint")
                         .HasColumnOrder(7);
 
-                    b.Property<DateTime>("CreatedAt")
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedAt");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(2);
+
+                    b.Property<DateTime>("Ended")
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("datetime2")
+                        .HasColumnName("Ended");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)")
@@ -1280,10 +1405,10 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(4);
 
-                    b.Property<DateTime>("ModifiedAt")
+                    b.Property<DateTime>("Started")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
-                        .HasColumnName("ModifiedAt");
+                        .HasColumnName("Started");
 
                     b.Property<int>("UserType")
                         .HasColumnType("int")
@@ -1297,11 +1422,11 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                             {
                                 ttb.UseHistoryTable("UserHistory");
                                 ttb
-                                    .HasPeriodStart("CreatedAt")
-                                    .HasColumnName("CreatedAt");
+                                    .HasPeriodStart("Started")
+                                    .HasColumnName("Started");
                                 ttb
-                                    .HasPeriodEnd("ModifiedAt")
-                                    .HasColumnName("ModifiedAt");
+                                    .HasPeriodEnd("Ended")
+                                    .HasColumnName("Ended");
                             }));
 
                     b.HasData(

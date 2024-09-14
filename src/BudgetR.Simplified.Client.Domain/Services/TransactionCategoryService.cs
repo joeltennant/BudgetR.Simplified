@@ -19,7 +19,13 @@ public class TransactionCategoryService : ServiceBase
         if (response.IsSuccessStatusCode)
         {
             long id = await response.Content.ReadFromJsonAsync<long>();
-            ClientContext.TransactionCategories.Categories.Add(new TransactionCategory { TransactionCategoryId = id, CategoryName = categoryName });
+            ClientContext.TransactionCategories.Categories.Add(new TransactionCategory
+            {
+                TransactionCategoryId = id,
+                CategoryName = categoryName,
+                CreatedAt = DateTime.UtcNow,
+                ModifiedAt = DateTime.UtcNow
+            });
         }
 
         return response.IsSuccessStatusCode;
@@ -43,6 +49,7 @@ public class TransactionCategoryService : ServiceBase
 
     public async Task<bool> EditTransactionCategory(long id, string categoryName)
     {
+        var now = DateTime.Now;
         var response = await Http.PutAsJsonAsync("api/TransactionCategories/renameTransactionCategory", new { CategoryId = id, NewCategoryName = categoryName });
 
         if (response.IsSuccessStatusCode)
@@ -51,6 +58,7 @@ public class TransactionCategoryService : ServiceBase
             if (category != null)
             {
                 category.CategoryName = categoryName;
+                category.ModifiedAt = now;
             }
         }
         return response.IsSuccessStatusCode;
