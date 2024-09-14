@@ -14,44 +14,37 @@
         <MudText Typo="Typo.h5">Transaction Categories</MudText>
     </ToolBarTitle>
     <ToolBarRightSide>
-        <MudFab Color="Color.Primary" onclick="AddCategory" StartIcon="@Icons.Material.Filled.Add" Size="Size.Small" Elevation="0" />
+        <MudIconButton Color="Color.Primary" onclick="AddCategory" Icon="@Icons.Material.Filled.Add" Size="Size.Small" />
     </ToolBarRightSide>
     <Body>
         <MudGrid>
-            <MudItem xs="10">
+            <MudItem xs="12">
                 <MudDataGrid T="TransactionCategory"
-                             MultiSelection="true"
                              Items="@clientContext.TransactionCategories.Categories"
                              SortMode="SortMode.Multiple"
-                             Filterable="true" QuickFilter="@_quickFilter"
+                             Filterable="true" 
+                             FilterMode="DataGridFilterMode.Simple" 
+                             FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive"
                              Hover="true"
                              Dense="true"
                              Striped="true"
                              Bordered="true"
-                             Hideable="true"
+                             Hideable="false"
                              ReadOnly="false"
                              EditMode="@DataGridEditMode.Form"
                              CommittedItemChanges="@EditCategory">
-                    <ToolBarContent>
-                        <MudSpacer />
-                        <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
-                                      AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0"></MudTextField>
-                    </ToolBarContent>
                     <Columns>
-                        <SelectColumn T="TransactionCategory" />
                         <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="true" Filterable="true" />
-                        <PropertyColumn Property="x => x.ModifiedAt.ToLocalTime().RemoveSeconds()" Title="Modified At" Sortable="true" Filterable="true" Editable="false" />
-                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime().RemoveSeconds()" Title="Created At" Sortable="true" Filterable="true" Editable="false" />
+                        <PropertyColumn Property="x => x.ModifiedAt.ToLocalTime().RemoveSeconds()" Title="Modified At" Sortable="true" Editable="false" Filterable="true" />
+                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime().RemoveSeconds()" Title="Created At" Sortable="true" Editable="false" Filterable="true" />
                         <TemplateColumn CellClass="d-flex justify-end" Title="Actions">
                             <CellTemplate>
-                                <MudIconButton 
-                                    Icon="@Icons.Material.Filled.Delete" 
-                                    Size="@Size.Small" aria-label="delete" 
-                                    onclick="(()=>DeleteCategory(context.Item))" />
-                                <MudIconButton 
-                                    Size="@Size.Small" 
-                                    Icon="@Icons.Material.Outlined.Edit" 
-                                    OnClick="@context.Actions.StartEditingItemAsync" />
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                               Size="@Size.Small" aria-label="delete"
+                                               onclick="(()=>DeleteCategory(context.Item))" />
+                                <MudIconButton Size="@Size.Small"
+                                               Icon="@Icons.Material.Outlined.Edit"
+                                               OnClick="@context.Actions.StartEditingItemAsync" />
                             </CellTemplate>
                         </TemplateColumn>
                     </Columns>
@@ -69,17 +62,6 @@
     private bool _sortNameByLength;
     private List<string> _events = new();
     private int[] pageSizeOptions = new int[] { 100, 50, 20, 10 };
-
-    private Func<TransactionCategory, bool> _quickFilter => x =>
-    {
-        if (string.IsNullOrWhiteSpace(_searchString))
-            return true;
-
-        if (x.CategoryName.Contains(_searchString, StringComparison.OrdinalIgnoreCase))
-            return true;
-
-        return false;
-    };
 
     protected override async Task OnInitializedAsync()
     {
