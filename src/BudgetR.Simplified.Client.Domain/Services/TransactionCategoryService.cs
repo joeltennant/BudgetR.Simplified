@@ -40,4 +40,19 @@ public class TransactionCategoryService : ServiceBase
 
         return response.IsSuccessStatusCode;
     }
+
+    public async Task<bool> EditTransactionCategory(long id, string categoryName)
+    {
+        var response = await Http.PutAsJsonAsync("api/TransactionCategories/renameTransactionCategory", new { CategoryId = id, NewCategoryName = categoryName });
+
+        if (response.IsSuccessStatusCode)
+        {
+            var category = ClientContext.TransactionCategories.Categories.FirstOrDefault(c => c.TransactionCategoryId == id);
+            if (category != null)
+            {
+                category.CategoryName = categoryName;
+            }
+        }
+        return response.IsSuccessStatusCode;
+    }
 }

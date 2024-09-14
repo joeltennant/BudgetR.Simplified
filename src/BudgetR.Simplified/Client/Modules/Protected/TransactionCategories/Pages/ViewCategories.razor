@@ -27,7 +27,10 @@
                              Dense="true"
                              Striped="true"
                              Bordered="true"
-                             Hideable="true">
+                             Hideable="true"
+                             ReadOnly="false"
+                             EditMode="@DataGridEditMode.Form"
+                             CommittedItemChanges="@EditCategory">
                     <ToolBarContent>
                         <MudSpacer />
                         <MudTextField @bind-Value="_searchString" Placeholder="Search" Adornment="Adornment.Start" Immediate="true"
@@ -36,9 +39,16 @@
                     <Columns>
                         <SelectColumn T="TransactionCategory" />
                         <PropertyColumn Property="x => x.CategoryName" Title="Category Name" Sortable="false" Filterable="false" />
-                        <TemplateColumn CellClass="d-flex justify-end">
+                        <TemplateColumn CellClass="d-flex justify-end" Title="Actions">
                             <CellTemplate>
-                                <MudIconButton Icon="@Icons.Material.Filled.Delete" aria-label="delete" onclick="(()=>DeleteCategory(context.Item))" />
+                                <MudIconButton 
+                                    Icon="@Icons.Material.Filled.Delete" 
+                                    Size="@Size.Small" aria-label="delete" 
+                                    onclick="(()=>DeleteCategory(context.Item))" />
+                                <MudIconButton 
+                                    Size="@Size.Small" 
+                                    Icon="@Icons.Material.Outlined.Edit" 
+                                    OnClick="@context.Actions.StartEditingItemAsync" />
                             </CellTemplate>
                         </TemplateColumn>
                     </Columns>
@@ -90,7 +100,6 @@
         if (!result.Canceled)
         {
             Snackbar.Add("Category created successfully", Severity.Success);
-            // clientContext.OnChange -= StateHasChanged;
         }
         else
         {
@@ -110,4 +119,19 @@
             Snackbar.Add("Error deleting category", Severity.Error);
         }
     }
+
+    private async Task EditCategory(TransactionCategory category)
+    {
+        var isSuccess = await categoryService.EditTransactionCategory(category.TransactionCategoryId, category.CategoryName);
+
+        if (isSuccess)
+        {
+            Snackbar.Add($"Renamed to {category.CategoryName} successfully", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Category editing didn't work!", Severity.Info);
+        }
+    }
+
 }
