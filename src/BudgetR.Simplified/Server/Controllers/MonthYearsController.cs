@@ -1,4 +1,6 @@
-﻿namespace BudgetR.Simplified.Controllers;
+﻿using BudgetR.Simplified.Server.Application.Handlers.MonthYears;
+
+namespace BudgetR.Simplified.Controllers;
 
 public class MonthYearsController : BaseController
 {

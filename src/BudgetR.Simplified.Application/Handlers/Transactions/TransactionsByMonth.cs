@@ -1,5 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace BudgetR.Simplified.Server.Application.Handlers.Transactions;
 public class TransactionsByMonth
 {

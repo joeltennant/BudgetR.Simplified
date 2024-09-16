@@ -1,4 +1,5 @@
 ﻿using BudgetR.Simplified.Core;
+using BudgetR.Simplified.Server.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Server.Services;

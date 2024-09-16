@@ -1,4 +1,5 @@
 ﻿using BudgetR.Simplified.Core;
+using BudgetR.Simplified.Server.Application.Handlers.Categories;
 
 namespace BudgetR.Simplified.Controllers;
 

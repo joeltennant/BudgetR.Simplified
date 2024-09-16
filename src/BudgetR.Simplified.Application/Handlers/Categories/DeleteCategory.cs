@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-namespace BudgetR.Simplified.Server.Application.Handlers.Categories;
+﻿namespace BudgetR.Simplified.Server.Application.Handlers.Categories;
 public class DeleteCategory
 {
     public record Request(long? CategoryId) : IRequest<Result<NoValue>>;

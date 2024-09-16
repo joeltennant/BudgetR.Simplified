@@ -1,5 +1,7 @@
 ﻿using BudgetR.Simplified.Core.Enums;
 using BudgetR.Simplified.Core.StateManagement;
+using BudgetR.Simplified.Server.Domain.Entities;
+using BudgetR.Simplified.Server.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Server.Services.Transactions;

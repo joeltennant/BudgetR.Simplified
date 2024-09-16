@@ -1,4 +1,6 @@
 using BudgetR.Simplified.Core.StateManagement;
+using BudgetR.Simplified.Server.Application;
+using BudgetR.Simplified.Server.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,6 @@
-﻿namespace BudgetR.Simplified.Server.Application.Handlers.Transactions;
+﻿using BudgetR.Simplified.Server.Services.Transactions;
+
+namespace BudgetR.Simplified.Server.Application.Handlers.Transactions;
 public class CreateTransaction
 {
     public record Request(TransactionDto transaction) : IRequest<Result<NoValue>>;
