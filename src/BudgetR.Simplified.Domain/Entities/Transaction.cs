@@ -34,7 +34,7 @@ public class Transaction
     public int TransactionYear { get; set; }
 
     [Column(Order = 8)]
-    public string? CategoryName { get; set; }
+    public long? TransactionCategoryId { get; set; }
     public TransactionCategory? TransactionCategory { get; set; }
 
     [Column(Order = 9)]

@@ -17,7 +17,7 @@ public class CreateTransaction
 
         public DateTime? TransactionDate { get; set; }
 
-        public string? CategoryName { get; set; }
+        public long TransactionCategoryId { get; set; }
     }
 
     public class Validator : AbstractValidator<Request>
@@ -38,10 +38,10 @@ public class CreateTransaction
             RuleFor(x => x.transaction.TransactionDate)
                 .NotEmpty()
                 .NotNull();
-            RuleFor(x => x.transaction.CategoryName)
+            RuleFor(x => x.transaction.TransactionCategoryId)
                 .NotNull()
                 .NotEmpty()
-                .MinimumLength(2);
+                .GreaterThan(0);
         }
     }
 
@@ -74,7 +74,7 @@ public class CreateTransaction
                     AccountName = request.transaction.AccountName,
                     Amount = request.transaction.Amount,
                     TransactionDate = DateOnly.FromDateTime(request.transaction.TransactionDate.Value),
-                    CategoryName = request.transaction.CategoryName
+                    TransactionCategoryId = request.transaction.TransactionCategoryId
                 };
 
                 var transactions = new List<Transaction> { transactionEntity };

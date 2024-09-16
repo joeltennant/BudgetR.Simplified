@@ -20,7 +20,7 @@ public class TransactionsByMonth
         public decimal Amount { get; set; }
 
         public DateOnly? TransactionDate { get; set; }
-
+        public long TransactionCategoryId { get; set; }
         public string? CategoryName { get; set; }
     }
 
@@ -65,7 +65,8 @@ public class TransactionsByMonth
                         TransactionType = x.TransactionType.ToString(),
                         Amount = x.Amount,
                         TransactionDate = x.TransactionDate,
-                        CategoryName = x.CategoryName,
+                        CategoryName = x.TransactionCategory.CategoryName,
+                        TransactionCategoryId = x.TransactionCategory.TransactionCategoryId,
                         Month = x.TransactionMonth,
                         Year = x.TransactionYear
                     })
