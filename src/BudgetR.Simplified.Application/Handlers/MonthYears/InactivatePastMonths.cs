@@ -1,6 +1,4 @@
-﻿using BudgetR.Simplified.Services;
-
-namespace BudgetR.Simplified.Application.Handlers.MonthYears;
+﻿namespace BudgetR.Simplified.Server.Application.Handlers.MonthYears;
 public class InactivatePastMonths
 {
     public class Request : IRequest<Result<NoValue>>;

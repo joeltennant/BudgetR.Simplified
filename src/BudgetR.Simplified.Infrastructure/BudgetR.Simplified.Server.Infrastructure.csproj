@@ -26,7 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
-    <ProjectReference Include="..\BudgetR.Simplified.Domain\BudgetR.Simplified.Domain.csproj" />
+    <ProjectReference Include="..\BudgetR.Simplified.Domain\BudgetR.Simplified.Server.Domain.csproj" />
   </ItemGroup>
 
 </Project>

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 
-namespace BudgetR.Simplified.Application.PipelineBehaviors;
+namespace BudgetR.Simplified.Server.Application.PipelineBehaviors;
 
 public class PreRequestBehavior<TRequest> : IRequestPreProcessor<TRequest>
 {

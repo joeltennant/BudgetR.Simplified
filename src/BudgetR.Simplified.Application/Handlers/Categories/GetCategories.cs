@@ -1,7 +1,6 @@
-﻿using BudgetR.Simplified.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Application.Handlers.Categories;
+namespace BudgetR.Simplified.Server.Application.Handlers.Categories;
 public class GetCategories
 {
     public record Request() : IRequest<Result<List<CategoryItem>>>;

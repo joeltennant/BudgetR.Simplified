@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using System.Reflection;
 
-namespace BudgetR.Simplified.Infrastructure.Data;
+namespace BudgetR.Simplified.Server.Infrastructure.Data;
 public class BudgetRDbContext : DbContext
 {
     public BudgetRDbContext()

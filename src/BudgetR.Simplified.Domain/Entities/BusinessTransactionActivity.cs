@@ -1,4 +1,4 @@
-﻿namespace BudgetR.Simplified.Domain.Entities;
+﻿namespace BudgetR.Simplified.Server.Domain.Entities;
 public class BusinessTransactionActivity
 {
     [Key]

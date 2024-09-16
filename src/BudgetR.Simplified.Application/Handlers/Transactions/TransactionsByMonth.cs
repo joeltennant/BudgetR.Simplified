@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Application.Handlers.Transactions;
+namespace BudgetR.Simplified.Server.Application.Handlers.Transactions;
 public class TransactionsByMonth
 {
     public record Request(long? budgetMonthId) : IRequest<Result<List<TransactionDto>>>;

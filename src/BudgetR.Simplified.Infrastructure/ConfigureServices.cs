@@ -1,8 +1,7 @@
-﻿using BudgetR.Simplified.Infrastructure.Data;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace BudgetR.Simplified.Infrastructure;
+namespace BudgetR.Simplified.Server.Infrastructure;
 
 public static class ConfigureServices
 {

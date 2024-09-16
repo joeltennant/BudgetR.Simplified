@@ -1,4 +1,4 @@
-﻿namespace BudgetR.Simplified.Infrastructure.Data.Configurations;
+﻿namespace BudgetR.Simplified.Server.Infrastructure.Data.Configurations;
 
 public class MonthYearConfiguration : IEntityTypeConfiguration<MonthYear>
 {

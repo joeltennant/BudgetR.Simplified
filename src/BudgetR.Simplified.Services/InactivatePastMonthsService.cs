@@ -1,8 +1,7 @@
 ﻿using BudgetR.Simplified.Core;
-using BudgetR.Simplified.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Services;
+namespace BudgetR.Simplified.Server.Services;
 
 public class InactivatePastMonthsService
 {

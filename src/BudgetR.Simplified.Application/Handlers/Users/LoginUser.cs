@@ -1,7 +1,6 @@
-﻿using BudgetR.Simplified.Services;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Application.Handlers.Users;
+namespace BudgetR.Simplified.Server.Application.Handlers.Users;
 public static class LoginUser
 {
     public record Request : IRequest<Result<Response>>;

@@ -1,4 +1,4 @@
-﻿namespace BudgetR.Simplified.Application.Handlers.Categories;
+﻿namespace BudgetR.Simplified.Server.Application.Handlers.Categories;
 public class CreateCategory
 {
     public record Request(string CategoryName) : IRequest<Result<long>>;

@@ -1,4 +1,4 @@
-﻿namespace BudgetR.Simplified.Infrastructure.Data.Configurations;
+﻿namespace BudgetR.Simplified.Server.Infrastructure.Data.Configurations;
 public class BudgetMonthsConfiguration : IEntityTypeConfiguration<BudgetMonth>
 {
     public void Configure(EntityTypeBuilder<BudgetMonth> builder)

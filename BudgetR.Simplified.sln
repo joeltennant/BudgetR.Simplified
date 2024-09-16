@@ -7,11 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Core", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Server", "Server", "{D381B952-97A2-48BA-A4C9-7E07126D37C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Domain", "src\BudgetR.Simplified.Domain\BudgetR.Simplified.Domain.csproj", "{A8548735-EB83-48E4-A843-23AC7EDDD1F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Server.Domain", "src\BudgetR.Simplified.Domain\BudgetR.Simplified.Server.Domain.csproj", "{A8548735-EB83-48E4-A843-23AC7EDDD1F1}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Application", "src\BudgetR.Simplified.Application\BudgetR.Simplified.Application.csproj", "{77380B32-FFC5-4E8F-8FBD-51BEDACAB3C8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Server.Application", "src\BudgetR.Simplified.Application\BudgetR.Simplified.Server.Application.csproj", "{77380B32-FFC5-4E8F-8FBD-51BEDACAB3C8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Infrastructure", "src\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Infrastructure.csproj", "{C89FAFD4-8F73-4E08-9607-CB04293376F4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Server.Infrastructure", "src\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Server.Infrastructure.csproj", "{C89FAFD4-8F73-4E08-9607-CB04293376F4}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{7A03143C-C576-4281-945F-95EF6C6E20E4}"
 EndProject
@@ -25,12 +25,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BudgetR.Simplified.Client",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetR.Simplified.Client.Domain", "src\BudgetR.Simplified.Client.Domain\BudgetR.Simplified.Client.Domain.csproj", "{BF08FAE6-99AD-469B-BAB0-9759E8CD03F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetR.Simplified.Services", "src\BudgetR.Simplified.Services\BudgetR.Simplified.Services.csproj", "{EB898EDC-051E-4DC8-B59D-F5625AB05F46}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetR.Simplified.Server.Services", "src\BudgetR.Simplified.Services\BudgetR.Simplified.Server.Services.csproj", "{EB898EDC-051E-4DC8-B59D-F5625AB05F46}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{925EC53B-182B-4A6A-AB0E-5CBE2DF49C1A}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetR.Simplified.Server.Transactions", "src\Server\BudgetR.Simplified.Server.Transactions\BudgetR.Simplified.Server.Transactions.csproj", "{E14172BC-4686-4AE8-9D96-DADCC3743886}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -70,6 +72,10 @@ Global
 		{EB898EDC-051E-4DC8-B59D-F5625AB05F46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EB898EDC-051E-4DC8-B59D-F5625AB05F46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EB898EDC-051E-4DC8-B59D-F5625AB05F46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,6 +91,7 @@ Global
 		{C26F2C60-BB5F-4DCF-B7AD-E19DC684D7F4} = {4465194D-26BA-4D64-8398-A4810CD814D0}
 		{BF08FAE6-99AD-469B-BAB0-9759E8CD03F9} = {4465194D-26BA-4D64-8398-A4810CD814D0}
 		{EB898EDC-051E-4DC8-B59D-F5625AB05F46} = {D381B952-97A2-48BA-A4C9-7E07126D37C2}
+		{E14172BC-4686-4AE8-9D96-DADCC3743886} = {D381B952-97A2-48BA-A4C9-7E07126D37C2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD025DED-CDB7-47BD-AA44-564222F34444}

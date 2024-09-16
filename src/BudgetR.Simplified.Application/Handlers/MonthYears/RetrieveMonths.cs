@@ -1,7 +1,6 @@
-﻿using BudgetR.Simplified.Services;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Application.Handlers.MonthYears;
+namespace BudgetR.Simplified.Server.Application.Handlers.MonthYears;
 public class RetrieveMonths
 {
     public record Request() : IRequest<Result<List<MonthYearDto>>>;

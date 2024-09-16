@@ -21,9 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\BudgetR.Simplified.Application\BudgetR.Simplified.Application.csproj" />
+    <ProjectReference Include="..\..\BudgetR.Simplified.Application\BudgetR.Simplified.Server.Application.csproj" />
     <ProjectReference Include="..\..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
-    <ProjectReference Include="..\..\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Server.Infrastructure.csproj" />
     <ProjectReference Include="..\Client\BudgetR.Simplified.Client.csproj" />
   </ItemGroup>
 

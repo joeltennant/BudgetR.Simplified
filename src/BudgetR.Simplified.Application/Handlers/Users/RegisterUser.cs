@@ -1,6 +1,4 @@
-﻿using BudgetR.Simplified.Services;
-
-namespace BudgetR.Simplified.Application.Handlers.Users;
+﻿namespace BudgetR.Simplified.Server.Application.Handlers.Users;
 public class RegisterUser
 {
     public record Request(string? Email, string? FirstName, string? LastName) : IRequest<Result<NoValue>>;

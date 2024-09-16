@@ -1,6 +1,4 @@
-﻿
-
-namespace BudgetR.Simplified.Infrastructure.Data.Configurations;
+﻿namespace BudgetR.Simplified.Server.Infrastructure.Data.Configurations;
 internal class UserConfiguration : IEntityTypeConfiguration<User>
 {
     public void Configure(EntityTypeBuilder<User> builder)

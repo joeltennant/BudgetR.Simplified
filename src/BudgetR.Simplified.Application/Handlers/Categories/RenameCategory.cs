@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace BudgetR.Simplified.Application.Handlers.Categories;
+namespace BudgetR.Simplified.Server.Application.Handlers.Categories;
 public class RenameCategory
 {
     public record Request(long? CategoryId, string NewCategoryName) : IRequest<Result<NoValue>>;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 
-namespace BudgetR.Simplified.Application;
+namespace BudgetR.Simplified.Server.Application;
 public abstract class BaseHandler
 {
     protected readonly BudgetRDbContext _dbContext;

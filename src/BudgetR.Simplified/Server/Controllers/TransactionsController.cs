@@ -1,5 +1,4 @@
-﻿using BudgetR.Simplified.Application.Handlers.Transactions;
-using BudgetR.Simplified.Core;
+﻿using BudgetR.Simplified.Core;
 
 namespace BudgetR.Simplified.Controllers;
 
