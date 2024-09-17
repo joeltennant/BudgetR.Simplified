@@ -2,7 +2,6 @@
 using BudgetR.Simplified.Core.StateManagement;
 using BudgetR.Simplified.Server.Domain.Entities;
 using BudgetR.Simplified.Server.Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace BudgetR.Simplified.Server.Services.Transactions;
 
@@ -27,13 +26,13 @@ public class TransactionService
 
             var today = DateTime.Now;
 
-            transaction.TransactionMonth = today.Month;
-            transaction.TransactionYear = today.Year;
+            //transaction.TransactionMonth = today.Month;
+            //transaction.TransactionYear = today.Year;
 
-            transaction.BudgetMonthId = await _dbContext.BudgetMonths
-                .Where(x => x.MonthYear.Month == transaction.TransactionMonth && x.MonthYear.Year == transaction.TransactionYear)
-                .Select(x => x.BudgetMonthId)
-                .FirstAsync();
+            //transaction.BudgetMonthId = await _dbContext.BudgetMonths
+            //    .Where(x => x.MonthYear.Month == transaction.TransactionMonth && x.MonthYear.Year == transaction.TransactionYear)
+            //    .Select(x => x.BudgetMonthId)
+            //    .FirstAsync();
         }
 
         await _dbContext.Transactions.AddRangeAsync(transactions);

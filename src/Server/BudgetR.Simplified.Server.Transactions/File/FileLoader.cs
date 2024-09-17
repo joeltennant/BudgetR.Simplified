@@ -12,7 +12,7 @@ public class FileLoader
 
     public async Task LoadTransactionsAsync()
     {
-        var transactions = await ReadTransactionsFromFileAsync(filePath);
-        await SaveTransactionsAsync(transactions);
+        //var transactions = await ReadTransactionsFromFileAsync(filePath);
+        //await SaveTransactionsAsync(transactions);
     }
 }

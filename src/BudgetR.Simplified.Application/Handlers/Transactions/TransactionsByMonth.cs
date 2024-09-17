@@ -65,8 +65,8 @@ public class TransactionsByMonth
                         TransactionDate = x.TransactionDate,
                         CategoryName = x.TransactionCategory.CategoryName,
                         TransactionCategoryId = x.TransactionCategory.TransactionCategoryId,
-                        Month = x.TransactionMonth,
-                        Year = x.TransactionYear
+                        //Month = x.TransactionMonth,
+                        //Year = x.TransactionYear
                     })
                     .ToListAsync();
 
