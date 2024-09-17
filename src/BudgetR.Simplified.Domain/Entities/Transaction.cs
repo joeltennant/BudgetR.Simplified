@@ -2,7 +2,6 @@
 
 namespace BudgetR.Simplified.Server.Domain.Entities;
 
-[Index(nameof(TransactionMonth), nameof(TransactionYear))]
 public class Transaction
 {
     [Key]
@@ -27,27 +26,25 @@ public class Transaction
 
     [Column(Order = 6)]
     [MaxLength(2)]
-    public int TransactionMonth { get; set; }
+    public long MonthYearId { get; set; }
+    public MonthYear? MonthYear { get; set; }
 
-    [MaxLength(4)]
     [Column(Order = 7)]
-    public int TransactionYear { get; set; }
-
-    [Column(Order = 8)]
     public long? TransactionCategoryId { get; set; }
     public TransactionCategory? TransactionCategory { get; set; }
 
-    [Column(Order = 9)]
+    [Column(Order = 8)]
     public long? TransactionBatchId { get; set; }
+    public TransactionBatch? TransactionBatch { get; set; }
 
-    [Column(Order = 10)]
+    [Column(Order = 9)]
     public long UserId { get; set; }
     public User? User { get; set; }
 
-    [Column(Order = 11)]
+    [Column(Order = 10)]
     public bool PreventRecategorizing { get; set; }
 
-    [Column(Order = 12)]
+    [Column(Order = 11)]
     public long? BudgetMonthId { get; set; }
     public BudgetMonth? BudgetMonth { get; set; }
 }

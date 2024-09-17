@@ -14,4 +14,8 @@
     <ProjectReference Include="..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\" />
+  </ItemGroup>
+
 </Project>

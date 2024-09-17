@@ -34,6 +34,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetR.Simplified.Server.Transactions", "src\Server\BudgetR.Simplified.Server.Transactions\BudgetR.Simplified.Server.Transactions.csproj", "{E14172BC-4686-4AE8-9D96-DADCC3743886}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{DB78FA94-20AF-440F-83F9-5FCE07DDD0B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransactionBatchProcessor", "Tools\TransactionBatchProcessor\TransactionBatchProcessor.csproj", "{793AD924-7863-4046-AE28-111B63EC9BB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +80,10 @@ Global
 		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E14172BC-4686-4AE8-9D96-DADCC3743886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{793AD924-7863-4046-AE28-111B63EC9BB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{793AD924-7863-4046-AE28-111B63EC9BB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{793AD924-7863-4046-AE28-111B63EC9BB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{793AD924-7863-4046-AE28-111B63EC9BB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,6 +100,7 @@ Global
 		{BF08FAE6-99AD-469B-BAB0-9759E8CD03F9} = {4465194D-26BA-4D64-8398-A4810CD814D0}
 		{EB898EDC-051E-4DC8-B59D-F5625AB05F46} = {D381B952-97A2-48BA-A4C9-7E07126D37C2}
 		{E14172BC-4686-4AE8-9D96-DADCC3743886} = {D381B952-97A2-48BA-A4C9-7E07126D37C2}
+		{793AD924-7863-4046-AE28-111B63EC9BB6} = {DB78FA94-20AF-440F-83F9-5FCE07DDD0B5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BD025DED-CDB7-47BD-AA44-564222F34444}

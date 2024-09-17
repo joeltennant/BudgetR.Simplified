@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\BudgetR.Simplified.Core\BudgetR.Simplified.Core.csproj" />
+    <ProjectReference Include="..\..\BudgetR.Simplified.Infrastructure\BudgetR.Simplified.Server.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
