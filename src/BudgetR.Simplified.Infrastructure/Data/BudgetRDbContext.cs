@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Storage;
+﻿using BudgetR.Simplified.Server.Domain.Entities.Reference;
+using Microsoft.EntityFrameworkCore.Storage;
 using System.Reflection;
 
 namespace BudgetR.Simplified.Server.Infrastructure.Data;
@@ -22,6 +23,9 @@ public class BudgetRDbContext : DbContext
     public DbSet<Transaction> Transactions { get; set; }
     public DbSet<TransactionBatch> TransactionBatches { get; set; }
     public DbSet<UserParameter> UserParameters { get; set; }
+    public DbSet<Account> Accounts { get; set; }
+    public DbSet<AccountType> AccountTypes { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
