@@ -10,7 +10,7 @@ public class Account : BaseEntity
     [Column(Order = 1)]
     [MinLength(5)]
     [MaxLength(125)]
-    public string? Name { get; set; }
+    public string? DisplayName { get; set; }
 
     [Column(Order = 2)]
     public string? LongName { get; set; }
