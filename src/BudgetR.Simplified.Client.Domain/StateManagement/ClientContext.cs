@@ -5,6 +5,7 @@ public class ClientContext : BaseState
     {
         MonthYear = new();
         TransactionCategories = new();
+        Accounts = new();
     }
 
     private bool _userIsActive;
@@ -41,11 +42,8 @@ public class ClientContext : BaseState
         }
     }
 
-    //public event Action? OnChange;
-
-    //private void NotifyStateChanged() => OnChange?.Invoke();
-
     //STATE
     public MonthYearState MonthYear { get; set; }
     public TransactionCategoriesState TransactionCategories { get; set; }
+    public AccountState Accounts { get; set; }
 }

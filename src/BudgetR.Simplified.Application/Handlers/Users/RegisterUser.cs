@@ -47,6 +47,7 @@ public class RegisterUser
                     Email = request.Email,
                     FirstName = request.FirstName,
                     LastName = request.LastName,
+                    AuthenticationId = _serverContext.AuthenticationId,
                     IsActive = true,
                     UserType = UserType.User,
                     BusinessTransactionActivityId = btaId

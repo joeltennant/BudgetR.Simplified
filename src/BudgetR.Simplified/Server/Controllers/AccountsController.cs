@@ -16,6 +16,13 @@ public class AccountsController : BaseController
         return await _mediator.Send(new GetAllAccounts.Request());
     }
 
+    [HttpGet("AccountTypes")]
+    [TranslateResultToActionResult]
+    public async Task<Result<List<GetAccountTypes.Response>>> GetAccountTypes()
+    {
+        return await _mediator.Send(new GetAccountTypes.Request());
+    }
+
     [HttpPost]
     [TranslateResultToActionResult]
     public async Task<Result<long>> CreateAccount([FromBody] CreateAccount.Request command)
@@ -23,9 +30,9 @@ public class AccountsController : BaseController
         return await _mediator.Send(command);
     }
 
-    [HttpPut]
+    [HttpPut("rename")]
     [TranslateResultToActionResult]
-    public async Task<Result<NoValue>> UpdateAccount([FromBody] RenameAccount.Request request)
+    public async Task<Result<NoValue>> UpdateAccount([FromBody] UpdateAccount.Request request)
     {
         return await _mediator.Send(request);
     }

@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BudgetR.Simplified.Server.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(BudgetRDbContext))]
-    [Migration("20240917165859_AddAccounts")]
-    partial class AddAccounts
+    [Migration("20241013195449_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -49,6 +49,11 @@ namespace BudgetR.Simplified.Server.Infrastructure.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)")
+                        .HasColumnOrder(1);
+
                     b.Property<DateTime>("Ended")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
@@ -57,11 +62,6 @@ namespace BudgetR.Simplified.Server.Infrastructure.Data.Migrations
                     b.Property<string>("LongName")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(2);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)")
-                        .HasColumnOrder(1);
 
                     b.Property<DateTime>("Started")
                         .ValueGeneratedOnAddOrUpdate()
@@ -187,7 +187,7 @@ namespace BudgetR.Simplified.Server.Infrastructure.Data.Migrations
                         new
                         {
                             BusinessTransactionActivityId = 1L,
-                            CreatedAt = new DateTime(2024, 9, 17, 10, 58, 58, 691, DateTimeKind.Local).AddTicks(1112),
+                            CreatedAt = new DateTime(2024, 10, 13, 13, 54, 49, 12, DateTimeKind.Local).AddTicks(2100),
                             ProcessName = "Initial Seeding",
                             UserId = 1L
                         });

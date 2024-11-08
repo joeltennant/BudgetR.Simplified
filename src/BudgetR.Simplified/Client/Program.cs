@@ -30,5 +30,6 @@ builder.Services.AddSingleton<ClientContext>();
 builder.Services.AddScoped<TransactionCategoryService>();
 builder.Services.AddScoped<TransactionService>();
 builder.Services.AddScoped<MonthYearService>();
+builder.Services.AddScoped<AccountService>();
 
 await builder.Build().RunAsync();

@@ -1,0 +1,69 @@
+﻿@using BudgetR.Simplified.Client.Domain.Services
+@inject AccountService accountService
+
+<MudDialog>
+    <TitleContent>
+        Add Account
+    </TitleContent>
+    <DialogContent>
+        <MudForm Spacing="4">
+            <MudTextField T="string" Label="Display Name" Required="true" @bind-Value="displayName" />
+            <MudTextField T="string"  Label="Long Name" Required="true" @bind-Value="longName" />
+            <MudTextField Label="Balance Name"
+            T="decimal"
+            Required="true"
+            @bind-Value="balance"
+            Adornment="Adornment.Start"
+            AdornmentIcon="@Icons.Material.Filled.AttachMoney" />
+            <MudSelect Label="Account Type" T="long" Required="true" @bind-Value="accountTypeId">
+                @foreach (var accountType in clientContext.Accounts.AccountTypes)
+                {
+                    <MudSelectItem Value="@accountType.AccountTypeId" Label="@accountType.Name">
+                        @accountType.Name
+                    </MudSelectItem>
+                }
+            </MudSelect>
+        </MudForm>
+    </DialogContent>
+    <DialogActions>
+        <MudButton OnClick="Cancel">Cancel</MudButton>
+        <MudButton Color="Color.Primary" OnClick="Submit">Create</MudButton>
+    </DialogActions>
+</MudDialog>
+
+@code {
+    [CascadingParameter]
+    private MudDialogInstance MudDialog { get; set; }
+
+    private string displayName = string.Empty;
+    private string longName = string.Empty;
+    private decimal balance = 0.00M;
+    private long accountTypeId = 1;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await accountService.GetAccountTypes();
+    }
+
+    private async Task Submit()
+    {
+        if (string.IsNullOrWhiteSpace(displayName))
+        {
+            return;
+        }
+
+        var isSuccess = await accountService.CreateAccount(displayName, longName, balance, accountTypeId);
+
+        if (isSuccess)
+        {
+            MudDialog.Close(DialogResult.Ok(true));
+        }
+        else
+        {
+            MudDialog.Cancel();
+            // MudDialog.Close(DialogResult.Ok(false));
+        }
+    }
+
+    private void Cancel() => MudDialog.Cancel();
+}

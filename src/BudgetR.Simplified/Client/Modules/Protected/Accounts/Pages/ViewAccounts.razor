@@ -1,0 +1,124 @@
+﻿@page "/accounts"
+@using BudgetR.Simplified.Client.Domain.Services
+@using BudgetR.Simplified.Client.Modules.Protected.Accounts.Dialogs
+@using BudgetR.Simplified.Core
+@inject AccountService accountService
+@implements IDisposable
+@inject IDialogService DialogService
+@inject ISnackbar Snackbar
+
+<PageTitle>Accounts</PageTitle>
+
+<PageTemplate>
+    <ToolBarTitle>
+        <MudText Typo="Typo.h5">Transaction Categories</MudText>
+    </ToolBarTitle>
+    <ToolBarRightSide>
+        <MudIconButton Color="Color.Primary" onclick="AddAccount" Icon="@Icons.Material.Filled.Add" Size="Size.Small" />
+    </ToolBarRightSide>
+    <Body>
+        <MudGrid>
+            <MudItem xs="12">
+                <MudDataGrid T="Account"
+                             Items="@clientContext.Accounts.All"
+                             SortMode="SortMode.Multiple"
+                             Filterable="true"
+                             FilterMode="DataGridFilterMode.Simple"
+                             FilterCaseSensitivity="DataGridFilterCaseSensitivity.CaseInsensitive"
+                             Hover="true"
+                             Dense="true"
+                             Striped="true"
+                             Bordered="true"
+                             Hideable="false"
+                             ReadOnly="false"
+                             EditMode="@DataGridEditMode.Form"
+                             CommittedItemChanges="@EditAccount">
+                    <Columns>
+                        <PropertyColumn Property="x => x.DisplayName" Title="Account Name" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.LongName" Title="Long Name" Sortable="true" Filterable="true" />
+                        <PropertyColumn Property="x => x.Balance" Title="Balance" Sortable="true" Editable="true" Filterable="true" Format="C" />
+                        <PropertyColumn Property="x => x.AccountType" Title="Type" Sortable="true" Editable="false" Filterable="true" />
+                        <PropertyColumn Property="x => x.BalanceTypeString" Title="BalanceType" Editable="false" Filterable="false" />
+                        <PropertyColumn Property="x => x.CreatedAt.ToLocalTime().RemoveSeconds()" Title="Created" Sortable="true" Editable="false" Filterable="false" />
+                        <TemplateColumn CellClass="d-flex justify-end" Title="Actions">
+                            <CellTemplate>
+                                <MudIconButton Icon="@Icons.Material.Filled.Delete"
+                                               Size="@Size.Small" aria-label="delete"
+                                               onclick="(()=>DeleteAccount(context.Item))" />
+                                <MudIconButton Size="@Size.Small"
+                                               Icon="@Icons.Material.Outlined.Edit"
+                                               OnClick="@context.Actions.StartEditingItemAsync" />
+                            </CellTemplate>
+                        </TemplateColumn>
+                    </Columns>
+                    <PagerContent>
+                        <MudDataGridPager T="Account" PageSizeOptions="@pageSizeOptions" />
+                    </PagerContent>
+                </MudDataGrid>
+            </MudItem>
+        </MudGrid>
+    </Body>
+</PageTemplate>
+
+@code {
+    private string _searchString;
+    private bool _sortNameByLength;
+    private List<string> _events = new();
+    private int[] pageSizeOptions = new int[] { 100, 50, 20, 10 };
+
+    protected override async Task OnInitializedAsync()
+    {
+        await accountService.GetAccounts();
+        clientContext.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        clientContext.OnChange -= StateHasChanged;
+        clientContext.Accounts.Clear();
+    }
+
+    private async Task AddAccount()
+    {
+         var options = new DialogOptions { CloseOnEscapeKey = true };
+
+        var dialog = await DialogService.ShowAsync<AddAccountDialog>("Add Account", options);
+        var result = await dialog.Result;
+
+        if (!result.Canceled)
+        {
+            Snackbar.Add($"Account created successfully", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add($"Account creation was canceled", Severity.Info);
+        }        
+    }
+
+    private async Task EditAccount(Account account)
+    {
+        var isSuccess = await accountService.UpdateAccount(account.AccountId, account.DisplayName, account.LongName, account.Balance);
+
+        if (isSuccess)
+        {
+            Snackbar.Add($"Renamed to {account.DisplayName} successfully", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add($"Editing {account.DisplayName} didn't work!", Severity.Info);
+        }
+    }
+
+    private async Task DeleteAccount(Account account)
+    {
+        var isSuccess = await accountService.DeleteAccount(account.AccountId);
+        if (isSuccess)
+        {
+            Snackbar.Add($"{account.DisplayName} deleted successfully", Severity.Success);
+        }
+        else
+        {
+            Snackbar.Add("Error deleting category", Severity.Error);
+        }
+    }
+}

@@ -29,7 +29,6 @@ public class TransactionCategoriesController : BaseController
 
     // PUT api/TransactionCategories/updateTransactionCategory
     [HttpPut]
-    [Route("renameTransactionCategory")]
     [TranslateResultToActionResult]
     public async Task<Result<NoValue>> UpdateTransactionCategory([FromBody] RenameCategory.Request request)
     {

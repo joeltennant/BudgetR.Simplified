@@ -37,6 +37,8 @@ public class PreRequestBehavior<TRequest> : IRequestPreProcessor<TRequest>
                 })
                 .FirstOrDefault();
 
+            _serverContext.AuthenticationId = authenticationId;
+
             if (user != null)
             {
                 _serverContext.UserId = user.UserId;

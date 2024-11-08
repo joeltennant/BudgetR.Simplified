@@ -1,7 +1,7 @@
 ﻿namespace BudgetR.Simplified.Server.Application.Handlers.Accounts;
-public class RenameAccount
+public class UpdateAccount
 {
-    public record Request(long? AccountId, string newName, string newLongName) : IRequest<Result<NoValue>>;
+    public record Request(long? AccountId, string newName, string newLongName, decimal? newBalance) : IRequest<Result<NoValue>>;
 
     public class Validator : AbstractValidator<Request>
     {
@@ -19,6 +19,9 @@ public class RenameAccount
                 .NotNull()
                 .NotEmpty()
                 .MinimumLength(5);
+            RuleFor(x => x.newBalance)
+                .NotNull()
+                .NotEmpty();
         }
     }
 
@@ -59,7 +62,8 @@ public class RenameAccount
                     .ExecuteUpdateAsync(setters => setters
                         .SetProperty(x => x.DisplayName, request.newName)
                         .SetProperty(x => x.LongName, request.newLongName)
-                        .SetProperty(x => x.BusinessTransactionActivityId, btaId));
+                        .SetProperty(x => x.BusinessTransactionActivityId, btaId)
+                        .SetProperty(x => x.Balance, request.newBalance));
 
                 await _dbContext.CommitTransactionContext(transaction);
 

@@ -29,9 +29,9 @@
             return;
         }
 
-        var isSucess = await categoryService.CreateTransactionCategory(categoryName);
+        var isSuccess = await categoryService.CreateTransactionCategory(categoryName);
 
-        if (isSucess)
+        if (isSuccess)
         {
             MudDialog.Close(DialogResult.Ok(true));
         }

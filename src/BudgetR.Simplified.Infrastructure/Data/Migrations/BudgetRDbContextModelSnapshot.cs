@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace BudgetR.Simplified.Infrastructure.Data.Migrations
+namespace BudgetR.Simplified.Server.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(BudgetRDbContext))]
     partial class BudgetRDbContextModelSnapshot : ModelSnapshot
@@ -46,6 +46,11 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("DisplayName")
+                        .HasMaxLength(125)
+                        .HasColumnType("nvarchar(125)")
+                        .HasColumnOrder(1);
+
                     b.Property<DateTime>("Ended")
                         .ValueGeneratedOnAddOrUpdate()
                         .HasColumnType("datetime2")
@@ -54,11 +59,6 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                     b.Property<string>("LongName")
                         .HasColumnType("nvarchar(max)")
                         .HasColumnOrder(2);
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(125)
-                        .HasColumnType("nvarchar(125)")
-                        .HasColumnOrder(1);
 
                     b.Property<DateTime>("Started")
                         .ValueGeneratedOnAddOrUpdate()
@@ -175,7 +175,6 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                     b.HasKey("BusinessTransactionActivityId");
 
                     b.HasIndex("UserId")
-                        .IsUnique()
                         .HasFilter("[UserId] IS NOT NULL");
 
                     b.ToTable("BusinessTransactionActivities");
@@ -184,7 +183,7 @@ namespace BudgetR.Simplified.Infrastructure.Data.Migrations
                         new
                         {
                             BusinessTransactionActivityId = 1L,
-                            CreatedAt = new DateTime(2024, 9, 17, 10, 58, 58, 691, DateTimeKind.Local).AddTicks(1112),
+                            CreatedAt = new DateTime(2024, 10, 13, 13, 54, 49, 12, DateTimeKind.Local).AddTicks(2100),
                             ProcessName = "Initial Seeding",
                             UserId = 1L
                         });

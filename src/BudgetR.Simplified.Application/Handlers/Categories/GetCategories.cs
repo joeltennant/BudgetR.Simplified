@@ -22,8 +22,6 @@ public class GetCategories
         {
             try
             {
-                long btaId = await CreateBta();
-
                 var categories = await _dbContext.TransactionCategories
                                    .Where(x => x.UserId == _serverContext.UserId)
                                    .Select(x => new CategoryItem
